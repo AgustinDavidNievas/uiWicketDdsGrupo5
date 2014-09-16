@@ -1,9 +1,91 @@
 <!DOCTYPE html>
-	<html>
-		<head>
-			<link href="css/bootstrap.css" rel="stylesheet" media="screen">
-    		<link href="css/bootstrap-theme.css" rel="stylesheet" media="screen">
-        	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-			<title>Busqueda De Jugadores</title>
-		</head>
-	</html>
+<html>
+	<style>
+		table.resultados, th.resultados, td.resultados {
+
+    		border: 3px solid black;
+    		border-collapse: collapse;
+			width: 40%;
+			background-color: #EE9037;
+			}
+	</style>
+	
+	<head>
+		<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+		<link href="css/bootstrap-theme.css" rel="stylesheet" media="screen">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Busqueda De Jugadores</title>
+	</head>
+		<body>
+		  <form wicket:id="busquedaDeJugadoresForm" class="form-horizontal">	
+			<div class="container">
+				<table width="80%">
+					<tr>
+						<td>
+							<h1>Datos de la materia</h1>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label" for="criterioDeBusqueda">Criterio De Busqueda</label>
+				<div class="controls">
+					<select wicket:id="criteriosDeBusqueda">
+						<option>nombre</option>
+						<option>apodo</option>
+						<option>fecha de nacimiento</option>
+						<option>handicap desde...</option>
+						<option>handicap hasta...</option>
+						<option>promedio desde...</option>
+						<option>promedio hasta...</option>
+						<option>tuvieron infracciones</option>
+						<option>no tuvieron infracciones</option>
+						<option>todos</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label" for="comienzaCon">Comienza con...</label> <!-- ver como hacer para que esto cambie dependiendo el seleccionado de arriba -->
+				<div class="controls">													<!--Nota mental: la niña sabe demaciado, usar ajax  -->
+					<input wicket:id="entradaBindeadaConElCriterio" type="text" placeholder="escribe aqui"
+						class="form-control">
+				</div>
+			</div>
+			
+			<table class="resultados">
+			<thead>
+				<tr>
+					<th id="main">Nombre</th>
+					<th id="main">Apodo</th>
+					<th id="main">Handicap</th>
+					<th id="main">Promedio</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr wicket:id="jugadores">
+					<td>
+						<span wicket:id="nombre">unJugador</span>
+					</td>
+
+					<td>
+						<span wicket:id="apodo">unApodo</span>
+					</td>
+					
+					<td>
+						<span wicket:id="handicap">unHandicap</span>
+					</td>
+					
+					<td>
+						<span wicket:id="promedio">unPromedio</span>
+					</td>
+
+				</tr>
+			</tbody>
+
+		</table>
+			
+		  </form>
+		</body>
+</html>
