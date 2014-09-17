@@ -11,9 +11,11 @@ class SeguidorDePartido implements Serializable {
 	
 	@Property List<Criterios> criterios
 	@Property List<Jugador> jugadores
+	@Property Jugador jugadorSeleccionado
 	
 	def HomeJugadores getHomeJugadores() {
 		ApplicationContext.instance.getSingleton(typeof(Jugador))
 
 	}
+	
 }

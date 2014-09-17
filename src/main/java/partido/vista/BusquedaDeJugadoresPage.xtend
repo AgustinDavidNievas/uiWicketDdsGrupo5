@@ -35,8 +35,8 @@ class BusquedaDeJugadoresPage extends WebPage{
 			item.addChild(new Label("Handicap"))
 			item.addChild(new Label("Promedio"))
 			item.addChild(
-				new XButton("editarJugador").onClick = [|/*seguidor.jugadorSeleccionado = item.modelObject
-					this.abrirDatosDeJugadorpage(seguidor.jugadorSeleccionado)*/]
+				new XButton("editarJugador").onClick = [|seguidor.jugadorSeleccionado = item.modelObject
+					this.abrirDatosDeJugadorPage(seguidor.jugadorSeleccionado)]
 			)
 			
 		]
@@ -45,7 +45,7 @@ class BusquedaDeJugadoresPage extends WebPage{
 	}
 	
 	def abrirDatosDeJugadorPage(Jugador jugador) {
-		//responsePage = new DatosDeJugadorPage(jugador, this)
+		responsePage = new DatosDeJugadorPage(jugador)
 	}
 	
 	def agregarAcciones(Form<Partido> form) {
