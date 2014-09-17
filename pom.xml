@@ -41,13 +41,13 @@
 		</dependency>
 		<!-- /UQBAR -->
 		
-		<!-- TpDdsGrupo5 						en teoria estando en el parent no hace falta que este acá :P
+		<!-- TpDdsGrupo5 						en teoria estando en el parent no hace falta que este acá :P-->
 		<dependency>
 			<groupId>ddsGrupo5</groupId>
 			<artifactId>dds</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		TpDdsGrupo5 -->
+		<!--TpDdsGrupo5 -->
 		
 		<!--  JUNIT DEPENDENCY FOR TESTING -->
 		<dependency>
