@@ -21,9 +21,13 @@ class BusquedaDeJugadoresPage extends WebPage{
 	new(Partido partido){
 		val busquedaDeJugadoresForm = new Form<Partido>("busquedaDeJugadoresForm", partido.asCompoundModel)
 		this.agregarCamposDeEdicion(busquedaDeJugadoresForm)
-		this.agregarAcciones(busquedaDeJugadoresForm)
+		//this.agregarAcciones(busquedaDeJugadoresForm)
 		this.agregarGrillaDeJugadores(busquedaDeJugadoresForm)
-		
+		this.actualizar
+	}
+	
+	def actualizar() {
+		//TODO
 	}
 	
 	def agregarGrillaDeJugadores(Form<Partido> parent) {
