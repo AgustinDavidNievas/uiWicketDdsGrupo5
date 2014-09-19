@@ -18,7 +18,7 @@ class SeguidorDePartidoPage extends WebPage{
 	new() {
 		this.partido = new Partido
 		this.seguidor = new SeguidorDePartido()
-		val seguidorDePartidoForm = new Form<SeguidorDePartido>("SeguidorDePartidoForm", this.seguidor.asCompoundModel)
+		val seguidorDePartidoForm = new Form<SeguidorDePartido>("seguidorDePartidoForm", this.seguidor.asCompoundModel)
 		this.agregarAcciones(seguidorDePartidoForm)
 		this.addChild(seguidorDePartidoForm)
 
