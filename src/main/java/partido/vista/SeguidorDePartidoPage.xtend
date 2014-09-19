@@ -21,7 +21,12 @@ class SeguidorDePartidoPage extends WebPage{
 		val seguidorDePartidoForm = new Form<SeguidorDePartido>("seguidorDePartidoForm", this.seguidor.asCompoundModel)
 		this.agregarAcciones(seguidorDePartidoForm)
 		this.addChild(seguidorDePartidoForm)
+		this.actualizar
 
+	}
+	
+	def actualizar() {
+		this.seguidor.actualizar
 	}
 	
 	def agregarAcciones(Form<SeguidorDePartido> parent) {
