@@ -15,7 +15,7 @@ class SeguidorDePartidoPage extends WebPage{
 	@Property SeguidorDePartido seguidor
 	@Property Partido partido
 	
-	new() {
+		new() {
 		this.partido = new Partido
 		this.seguidor = new SeguidorDePartido()
 		val seguidorDePartidoForm = new Form<SeguidorDePartido>("seguidorDePartidoForm", this.seguidor.asCompoundModel)
