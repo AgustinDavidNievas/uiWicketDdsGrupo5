@@ -11,8 +11,8 @@ import org.uqbar.wicket.xtend.XListView
 import organizador.Administrador.Admin
 import organizador.partidos.jugador.Jugador
 import organizador.partidos.partido.Partido
-import partido.criteriosDeBusquedaDeLaUi.CriteriosDeBusqueda
 import partido.seguidorDePartido.SeguidorDePartido
+import organizador.partidos.criterios.Criterios
 
 class BusquedaDeJugadoresPage extends WebPage {
 
@@ -63,7 +63,7 @@ class BusquedaDeJugadoresPage extends WebPage {
 
 	def agregarCamposDeEdicion(Form<Partido> parent) {
 		parent.addChild(
-			new DropDownChoice<CriteriosDeBusqueda>("criteriosDeBusqueda") => [
+			new DropDownChoice<Criterios>("criteriosDeBusqueda") => [
 				choices = loadableModel([|seguidor.criteriosDeBusqueda])
 			])
 		parent.addChild(new TextField<String>("comienzaCon"))//hacer if depende del criterio hacer distinto textField...

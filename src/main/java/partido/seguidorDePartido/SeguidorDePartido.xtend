@@ -8,12 +8,12 @@ import partido.home.HomeJugadores
 import org.uqbar.commons.utils.ApplicationContext
 import organizador.partidos.criterios.Handicap
 import organizador.Administrador.Admin
-import partido.criteriosDeBusquedaDeLaUi.CriteriosDeBusqueda
+
 
 class SeguidorDePartido implements Serializable {
 	
-	@Property List<Criterios> criterios
-	@Property List<CriteriosDeBusqueda> criteriosDeBusqueda
+	@Property List<Criterios> criterios			//Para la generacion de equipos
+	@Property List<Criterios> criteriosDeBusqueda //Para la busqueda de jugadores
 	@Property List<Jugador> jugadores
 	@Property Jugador jugadorSeleccionado
 	@Property Admin admin
@@ -27,7 +27,7 @@ class SeguidorDePartido implements Serializable {
 	}
 	
 	def inicializarColleccionDeCriteriosDeBusqueda() {
-		this.criteriosDeBusqueda = newArrayList
+//		this.criteriosDeBusqueda = newArrayList
 		//this.criteriosDeBusqueda.add()
 	}
 	
