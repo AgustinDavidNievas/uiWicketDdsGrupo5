@@ -4,11 +4,11 @@ import java.io.Serializable
 import organizador.partidos.criterios.Criterios
 import java.util.List
 import organizador.partidos.jugador.Jugador
-import partido.home.HomeJugadores
+
 import org.uqbar.commons.utils.ApplicationContext
 import organizador.partidos.criterios.Handicap
 import organizador.Administrador.Admin
-
+import organizador.home.HomeDeJugadores
 
 class SeguidorDePartido implements Serializable {
 	
@@ -49,7 +49,7 @@ class SeguidorDePartido implements Serializable {
 		this.seleccionarMateriaNumeroUno
 	}
 	
-	def HomeJugadores getHomeJugadores() {
+	def HomeDeJugadores getHomeJugadores() {
 		ApplicationContext.instance.getSingleton(typeof(Jugador))
 
 	}
