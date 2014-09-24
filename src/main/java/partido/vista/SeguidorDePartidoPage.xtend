@@ -8,16 +8,19 @@ import org.uqbar.wicket.xtend.XButton
 import organizador.partidos.jugador.Jugador
 import organizador.partidos.partido.Partido
 import organizador.partidos.jugador.Estandar
+import organizador.Administrador.Admin
 
 class SeguidorDePartidoPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 
 	@Property SeguidorDePartido seguidor
 	@Property Partido partido
+	@Property Admin unAdmin
 
 	new() {
-		this.partido = new Partido
-		this.seguidor = new SeguidorDePartido()
+		this.unAdmin = new Admin("admin@mail.com")
+		this.partido = new Partido("20/58/14", "Campus", "05:00pm", unAdmin)
+		this.seguidor = new SeguidorDePartido(unAdmin)
 		val seguidorDePartidoForm = new Form<SeguidorDePartido>("seguidorDePartidoForm", this.seguidor.asCompoundModel)
 		this.agregarAcciones(seguidorDePartidoForm)
 		this.addChild(seguidorDePartidoForm)
@@ -42,7 +45,7 @@ class SeguidorDePartidoPage extends WebPage {
 	}
 
 	def nuevaBusquedaDeJugadores(Jugador jugador) {
-		responsePage = new BusquedaDeJugadoresPage(partido)
+		responsePage = new BusquedaDeJugadoresPage(partido,this.seguidor,this.unAdmin)
 	}
 
 }

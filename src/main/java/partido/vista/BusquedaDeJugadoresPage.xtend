@@ -1,27 +1,31 @@
 package partido.vista
 
 import org.apache.wicket.markup.html.WebPage
-import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
-import organizador.partidos.partido.Partido
-import org.apache.wicket.markup.html.form.Form
-import org.apache.wicket.markup.html.form.DropDownChoice
-import partido.seguidorDePartido.SeguidorDePartido
-import organizador.partidos.criterios.Criterios
-import org.apache.wicket.markup.html.form.TextField
-import org.uqbar.wicket.xtend.XListView
 import org.apache.wicket.markup.html.basic.Label
+import org.apache.wicket.markup.html.form.DropDownChoice
+import org.apache.wicket.markup.html.form.Form
+import org.apache.wicket.markup.html.form.TextField
+import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
+import org.uqbar.wicket.xtend.XListView
+import organizador.Administrador.Admin
 import organizador.partidos.jugador.Jugador
+import organizador.partidos.partido.Partido
+import partido.criteriosDeBusquedaDeLaUi.CriteriosDeBusqueda
+import partido.seguidorDePartido.SeguidorDePartido
 
 class BusquedaDeJugadoresPage extends WebPage {
 
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
-	SeguidorDePartido seguidor
+	@Property SeguidorDePartido seguidor
+	@Property Admin admin
 
-	new(Partido partido) {
+	new(Partido partido, SeguidorDePartido seguidor, Admin unAdmin) {
+		this.seguidor = seguidor
+		this.admin = unAdmin
+		
 		val busquedaDeJugadoresForm = new Form<Partido>("busquedaDeJugadoresForm", partido.asCompoundModel)
 		this.agregarCamposDeEdicion(busquedaDeJugadoresForm)
-
 		//this.agregarAcciones(busquedaDeJugadoresForm)
 		this.agregarGrillaDeJugadores(busquedaDeJugadoresForm)
 		this.addChild(busquedaDeJugadoresForm)
@@ -59,10 +63,10 @@ class BusquedaDeJugadoresPage extends WebPage {
 
 	def agregarCamposDeEdicion(Form<Partido> parent) {
 		parent.addChild(
-			new DropDownChoice<Criterios>("criteriosDeBusqueda") => [
-				choices = loadableModel([|seguidor.criterios])
+			new DropDownChoice<CriteriosDeBusqueda>("criteriosDeBusqueda") => [
+				choices = loadableModel([|seguidor.criteriosDeBusqueda])
 			])
-		parent.addChild(new TextField<String>("comienzaCon"))
+		parent.addChild(new TextField<String>("comienzaCon"))//hacer if depende del criterio hacer distinto textField...
 	}
 
 }
