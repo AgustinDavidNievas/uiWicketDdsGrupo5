@@ -9,13 +9,13 @@ import organizador.partidos.jugador.Jugador
 import organizador.partidos.partido.Partido
 import organizador.partidos.jugador.Estandar
 
-class SeguidorDePartidoPage extends WebPage{
+class SeguidorDePartidoPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
-	
+
 	@Property SeguidorDePartido seguidor
 	@Property Partido partido
-	
-		new() {
+
+	new() {
 		this.partido = new Partido
 		this.seguidor = new SeguidorDePartido()
 		val seguidorDePartidoForm = new Form<SeguidorDePartido>("seguidorDePartidoForm", this.seguidor.asCompoundModel)
@@ -24,27 +24,25 @@ class SeguidorDePartidoPage extends WebPage{
 		this.actualizar
 
 	}
-	
+
 	def actualizar() {
 		this.seguidor.actualizar
 	}
-	
+
 	def agregarAcciones(Form<SeguidorDePartido> parent) {
-			
 
 		val busquedaDeJugadoresButton = new XButton("busquedaDeJugadores")
 		busquedaDeJugadoresButton.onClick = [|nuevaBusquedaDeJugadores(new Jugador("Roman", new Estandar, 30))]
 		parent.addChild(busquedaDeJugadoresButton)
-	
 
 		parent.addChild(
 			new XButton("generadorDeEquipos") => [
-				onClick = [ |]
+				onClick = [|]
 			])
 	}
-	
+
 	def nuevaBusquedaDeJugadores(Jugador jugador) {
 		responsePage = new BusquedaDeJugadoresPage(partido)
 	}
-	
+
 }

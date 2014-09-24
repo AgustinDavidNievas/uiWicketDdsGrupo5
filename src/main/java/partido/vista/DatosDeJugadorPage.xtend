@@ -30,7 +30,6 @@ class DatosDeJugadorPage extends WebPage {
 	}
 
 	def agregarAcciones(Form<Jugador> parent) {
- 
 		parent.addChild(new XButton("volver").onClick = [|abrirPantallaPrincipal])
 	}
 
@@ -40,9 +39,9 @@ class DatosDeJugadorPage extends WebPage {
 
 	def actualizar() {
 	}
-	
-	def agregarGrillaInfracciones(Form<Jugador> parent){
-		
+
+	def agregarGrillaInfracciones(Form<Jugador> parent) {
+
 		val listView = new XListView("infracciones")
 		listView.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
@@ -51,8 +50,7 @@ class DatosDeJugadorPage extends WebPage {
 			item.addChild(new Label("hora"))
 			item.addChild(new Label("descripcion"))
 		]
-		
-		
+
 	}
 
 }

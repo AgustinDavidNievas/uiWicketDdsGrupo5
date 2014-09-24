@@ -13,23 +13,25 @@ import org.apache.wicket.markup.html.basic.Label
 import org.uqbar.wicket.xtend.XButton
 import organizador.partidos.jugador.Jugador
 
-class BusquedaDeJugadoresPage extends WebPage{
-	
+class BusquedaDeJugadoresPage extends WebPage {
+
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	SeguidorDePartido seguidor
-	
-	new(Partido partido){
+
+	new(Partido partido) {
 		val busquedaDeJugadoresForm = new Form<Partido>("busquedaDeJugadoresForm", partido.asCompoundModel)
 		this.agregarCamposDeEdicion(busquedaDeJugadoresForm)
+
 		//this.agregarAcciones(busquedaDeJugadoresForm)
 		this.agregarGrillaDeJugadores(busquedaDeJugadoresForm)
+		this.addChild(busquedaDeJugadoresForm)
 		this.actualizar
 	}
-	
+
 	def actualizar() {
 		//TODO
 	}
-	
+
 	def agregarGrillaDeJugadores(Form<Partido> parent) {
 		val listView = new XListView("inscriptos")
 		listView.populateItem = [ item |
@@ -42,20 +44,19 @@ class BusquedaDeJugadoresPage extends WebPage{
 				new XButton("editarJugador").onClick = [|seguidor.jugadorSeleccionado = item.modelObject
 					this.abrirDatosDeJugadorPage(seguidor.jugadorSeleccionado)]
 			)
-			
 		]
-		
+
 		parent.addChild(listView)
 	}
-	
+
 	def abrirDatosDeJugadorPage(Jugador jugador) {
 		responsePage = new DatosDeJugadorPage(jugador)
 	}
-	
+
 	def agregarAcciones(Form<Partido> form) {
 		//TODO
 	}
-	
+
 	def agregarCamposDeEdicion(Form<Partido> parent) {
 		parent.addChild(
 			new DropDownChoice<Criterios>("criteriosDeBusqueda") => [
@@ -63,6 +64,5 @@ class BusquedaDeJugadoresPage extends WebPage{
 			])
 		parent.addChild(new TextField<String>("comienzaCon"))
 	}
-	
-	
+
 }
