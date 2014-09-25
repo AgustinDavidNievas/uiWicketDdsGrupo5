@@ -18,15 +18,15 @@ class BusquedaDeJugadoresPage extends WebPage {
 
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	@Property SeguidorDePartido seguidor
-	@Property Admin admin
+	//@Property Admin admin      creo que la estaba flasheando y no lo necesito
 
-	new(Partido partido, SeguidorDePartido seguidor, Admin unAdmin) {
+	new(Partido partido, SeguidorDePartido seguidor) {
 		this.seguidor = seguidor
-		this.admin = unAdmin
+		//this.admin = unAdmin
 		
-		val busquedaDeJugadoresForm = new Form<Partido>("busquedaDeJugadoresForm", partido.asCompoundModel)
-		this.agregarCamposDeEdicion(busquedaDeJugadoresForm)
-		//this.agregarAcciones(busquedaDeJugadoresForm)
+		val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm", seguidor.asCompoundModel)
+		this.agregarCamposDeBusqueda(busquedaDeJugadoresForm)
+		this.agregarAcciones(busquedaDeJugadoresForm)
 		this.agregarGrillaDeJugadores(busquedaDeJugadoresForm)
 		this.addChild(busquedaDeJugadoresForm)
 		this.actualizar
@@ -36,8 +36,8 @@ class BusquedaDeJugadoresPage extends WebPage {
 		//TODO
 	}
 
-	def agregarGrillaDeJugadores(Form<Partido> parent) {
-		val listView = new XListView("inscriptos")
+	def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
+		val listView = new XListView("jugadores")
 		listView.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("Nombre"))
@@ -57,16 +57,26 @@ class BusquedaDeJugadoresPage extends WebPage {
 		responsePage = new DatosDeJugadorPage(jugador)
 	}
 
-	def agregarAcciones(Form<Partido> form) {
-		//TODO
+	def agregarAcciones(Form<SeguidorDePartido> form) {
+		val buscarButton = new XButton("buscar")
+		buscarButton.onClick = [| seguidor.search ]
+		parent.addChild(buscarButton)
+		
+		parent.addChild(new XButton("limpiar")
+			.onClick = [| seguidor.clear ]
+		)
+		
+	
 	}
 
-	def agregarCamposDeEdicion(Form<Partido> parent) {
-		parent.addChild(
+	def agregarCamposDeBusqueda(Form<SeguidorDePartido> parent) {
+		/*parent.addChild(
 			new DropDownChoice<Criterios>("criteriosDeBusqueda") => [
 				choices = loadableModel([|seguidor.criteriosDeBusqueda])
 			])
-		parent.addChild(new TextField<String>("comienzaCon"))//hacer if depende del criterio hacer distinto textField...
+		parent.addChild(new TextField<String>("comienzaCon"))*///hacer if depende del criterio hacer distinto textField...
+		parent.addChild(new TextField<String>("nombre"))
+		parent.addChild(new TextField<String>("apodo"))
 	}
 
 }

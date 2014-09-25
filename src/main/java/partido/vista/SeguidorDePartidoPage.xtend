@@ -45,7 +45,7 @@ class SeguidorDePartidoPage extends WebPage {
 	}
 
 	def nuevaBusquedaDeJugadores(Jugador jugador) {
-		responsePage = new BusquedaDeJugadoresPage(partido,this.seguidor,this.unAdmin)
+		responsePage = new BusquedaDeJugadoresPage(partido,this.seguidor)
 	}
 
 }

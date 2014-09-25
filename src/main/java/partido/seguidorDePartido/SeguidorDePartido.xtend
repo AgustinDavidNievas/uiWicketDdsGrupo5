@@ -9,6 +9,7 @@ import org.uqbar.commons.utils.ApplicationContext
 import organizador.partidos.criterios.Handicap
 import organizador.Administrador.Admin
 import organizador.home.HomeDeJugadores
+import java.util.ArrayList
 
 class SeguidorDePartido implements Serializable {
 	
@@ -18,6 +19,11 @@ class SeguidorDePartido implements Serializable {
 	@Property Jugador jugadorSeleccionado
 	@Property Admin admin
 	
+	//Para que funcione la busqueda de jugadores//
+	@Property String nombre
+	@Property String apodo
+	//******************************************//
+		
 	new(Admin unAdmin){
 		super()
 		this.inicializarColeccionDeJugadores
@@ -49,7 +55,7 @@ class SeguidorDePartido implements Serializable {
 		this.seleccionarMateriaNumeroUno
 	}
 	
-	def HomeDeJugadores getHomeJugadores() {
+	def HomeDeJugadores getHomeDeJugadores() {
 		ApplicationContext.instance.getSingleton(typeof(Jugador))
 
 	}
@@ -57,6 +63,20 @@ class SeguidorDePartido implements Serializable {
 	def seleccionarMateriaNumeroUno() {
 		if (jugadores.size > 0)
 			jugadorSeleccionado = jugadores.get(0)
+	}
+	
+	def void search() { 
+		// WORKAROUND para que refresque la grilla en las actualizaciones
+		jugadores = new ArrayList<Jugador>
+
+		// FIN WORKAROUND
+		jugadores = getHomeDeJugadores().search(getNombre, getApodo)
+		// también se puede llamar homeCelulares.search(numero, nombre) 
+	}
+
+	def void clear() {
+		nombre = null
+		apodo = null
 	}
 	
 }

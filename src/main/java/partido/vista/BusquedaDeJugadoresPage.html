@@ -30,29 +30,26 @@
 			
 			<div class="form-group">
 				<label class="control-label" for="criterioDeBusqueda">Criterio De Busqueda</label>
-				<div class="controls">
-					<select wicket:id="criteriosDeBusqueda">
-						<option>nombre</option>
-						<option>apodo</option>
-						<option>fecha de nacimiento</option>
-						<option>handicap desde...</option>
-						<option>handicap hasta...</option>
-						<option>promedio desde...</option>
-						<option>promedio hasta...</option>
-						<option>tuvieron infracciones</option>
-						<option>no tuvieron infracciones</option>
-						<option>todos</option>
-					</select>
-				</div>
+					<div class="form-group">
+						<label class="control-label" for="nombre">Nombre</label>
+              			<div class="controls">
+            				<input wicket:id="nombre" type="text" placeholder="nombre aqui" class="form-control">
+   		       			</div>
+					</div>
 			</div>
 			
 			<div class="form-group">
-				<label class="control-label" for="comienzaCon">Comienza con...</label> <!-- ver como hacer para que esto cambie dependiendo el seleccionado de arriba -->
-				<div class="controls">													<!--Nota mental: la niña sabe demaciado, usar ajax  -->
-					<input wicket:id="entradaBindeadaConElCriterio" type="text" placeholder="escribe aqui"
-						class="form-control">
+				<label class="control-label" for="comienzaCon">Apodo</label> 
+				<div class="controls">
+					<input wicket:id="apodo" type="text" placeholder="apodo aqui"class="form-control">
 				</div>
 			</div>
+			
+			 <div class="form-actions">
+                <button wicket:id="buscar" class="btn btn-primary" type="submit">Buscar</button>
+                <button wicket:id="limpiar" class="btn">Limpiar</button>
+            </div>
+            <br/>
 			
 			<table class="resultados">
 			<thead>
