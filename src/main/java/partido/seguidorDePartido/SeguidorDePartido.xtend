@@ -66,12 +66,11 @@ class SeguidorDePartido implements Serializable {
 	}
 	
 	def void search() { 
-		// WORKAROUND para que refresque la grilla en las actualizaciones
+		
 		jugadores = new ArrayList<Jugador>
 
-		// FIN WORKAROUND
 		jugadores = getHomeDeJugadores().search(getNombre, getApodo)
-		// también se puede llamar homeCelulares.search(numero, nombre) 
+		 
 	}
 
 	def void clear() {
