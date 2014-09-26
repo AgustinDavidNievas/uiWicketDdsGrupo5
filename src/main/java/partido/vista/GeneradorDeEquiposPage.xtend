@@ -29,10 +29,11 @@ class GeneradorDeEquiposPage extends WebPage {
 	@Property SeguidorDePartido seguidor
 	@Property Criterios criterio
 
-	new(Partido partido, SeguidorDePartido seguidor) {
+	new(Partido partido, SeguidorDePartido seguidorDeParametro) {
 		this.mainPage = mainPage
 		this.creador1 = new CreadorAlgoritmo1
 		this.creador2 = new CreadorAlgoritmo2
+		this.seguidor = seguidorDeParametro
 
 		val generarEquiposForm = new Form<SeguidorDePartido>("generarEquiposForm", seguidor.asCompoundModel)
 		this.agregarGrillaDeJugadoresEquipo1(generarEquiposForm)

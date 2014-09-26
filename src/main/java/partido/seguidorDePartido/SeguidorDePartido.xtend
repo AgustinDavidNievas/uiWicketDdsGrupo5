@@ -68,8 +68,6 @@ class SeguidorDePartido implements Serializable {
 	}
 
 	def actualizar() {
-		jugadores = newArrayList
-
 		this.jugadores = homeDeJugadores.allInstances.toList
 		this.seleccionarMateriaNumeroUno
 	}
