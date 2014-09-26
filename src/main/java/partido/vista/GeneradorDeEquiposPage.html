@@ -1,10 +1,161 @@
 <!DOCTYPE html>
 <html>
+
+<style>
+table,th,td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th,td {
+	padding: 5px;
+	text-align: left;
+}
+
+table#t01 tr:nth-child(even) {
+	background-color: #eee;
+}
+
+table#t01 tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+table#t01 th {
+	background-color: black;
+	color: white;
+}
+</style>
+
+
+
+
+
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
+
+<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-theme.css" rel="stylesheet" media="screen">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Busqueda De Jugadores</title>
+
 </head>
 <body>
+	<div class="container">
+		<table width="80%">
+			<tr>
+				<td>
+					<h1 wicket:id="titulo">Generador de Equipos</h1>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<form wicket:id="generarEquiposForm" class="form">
+
+
+		<!-- 			<div class="form-group"> -->
+		<!-- 				<label class="control-label" for="criterioDeSeleccion">Criterio -->
+		<!-- 					De Seleccion</label> -->
+		<!-- 				<div class="controls"> -->
+		<!-- 					<select wicket:id="criteriosDeSeleccion"> -->
+		<!-- 						<option>Algoritmo 1</option> -->
+		<!-- 						<option>Algortimo 2</option> -->
+
+
+		<!-- 					</select> -->
+		<!-- 				</div> -->
+		<!-- 			</div>	 -->
+
+		<div class="form-group">
+			<label class="control-label" for="handicap">Handicap</label>
+			<div class="controls">
+				<input wicket:id="handicap" type="checkbox" />
+			</div>
+
+			<label class="control-label" for="ultimasCalificaciones">Ultimas
+				Calificaciones</label>
+			<div class="controls">
+				<input wicket:id="ultimasCalificaciones" type="checkbox" />
+			</div>
+
+			<label class="control-label" for="ultimasNCalificaciones">Ultimas
+				N Calificaciones</label>
+			<div class="controls">
+				<input wicket:id="ultimasNCalificaciones" type="checkbox" />
+			</div>
+
+		</div>
+
+
+		<div class="from-actions">
+			<button wicket:id="ordenarJugadores" class="btn">Ordenar
+				Jugadores</button>
+		</div>
+
+
+
+		<!-- 				<br> -->
+
+		<!-- 				<div class=""> -->
+		<!-- 					<button wicket:id="generarEquipos" class="btn-link">Generar</button> -->
+		<!-- 				</div> -->
+		<!-- 				</br> <br> -->
+		<!-- 				<div> -->
+		<!-- 					<label>Equipo 1</label> -->
+		<!-- 					<table class="resultados1" id="t01"> -->
+		<!-- 						<thead> -->
+		<!-- 							<tr> -->
+		<!-- 								<th id="main">Nombre</th> -->
+		<!-- 								<th id="main">Apodo</th> -->
+		<!-- 								<th id="main">Handicap</th> -->
+		<!-- 								<th id="main">Promedio</th> -->
+		<!-- 							</tr> -->
+		<!-- 						</thead> -->
+		<!-- 						<tbody> -->
+		<!-- 							<tr wicket:id="jugadores1"> -->
+		<!-- 								<td><span wicket:id="nombre">unJugador</span></td> -->
+
+		<!-- 								<td><span wicket:id="apodo">unApodo</span></td> -->
+
+		<!-- 								<td><span wicket:id="handicap">unHandicap</span></td> -->
+
+		<!-- 								<td><span wicket:id="promedio">unPromedio</span></td> -->
+
+		<!-- 							</tr> -->
+		<!-- 						</tbody> -->
+
+		<!-- 					</table> -->
+		<!-- 				</div> -->
+		<!-- 				</br> <br> -->
+		<!-- 				<div> -->
+		<!-- 					<label>Equipo 2</label> -->
+		<!-- 					<table class="resultados2" id="t01"> -->
+		<!-- 						<thead> -->
+		<!-- 							<tr> -->
+		<!-- 								<th id="main">Nombre</th> -->
+		<!-- 								<th id="main">Apodo</th> -->
+		<!-- 								<th id="main">Handicap</th> -->
+		<!-- 								<th id="main">Promedio</th> -->
+		<!-- 							</tr> -->
+		<!-- 						</thead> -->
+		<!-- 						<tbody> -->
+		<!-- 							<tr wicket:id="jugadores2"> -->
+		<!-- 								<td><span wicket:id="nombre">unJugador</span></td> -->
+
+		<!-- 								<td><span wicket:id="apodo">unApodo</span></td> -->
+
+		<!-- 								<td><span wicket:id="handicap">unHandicap</span></td> -->
+
+		<!-- 								<td><span wicket:id="promedio">unPromedio</span></td> -->
+
+		<!-- 							</tr> -->
+		<!-- 						</tbody> -->
+
+		<!-- 					</table> -->
+		<!-- 				</div> -->
+		<!-- 				</br> -->
+	</form>
+
 
 </body>
 </html>
