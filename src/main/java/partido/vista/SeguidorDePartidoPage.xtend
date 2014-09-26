@@ -38,14 +38,16 @@ class SeguidorDePartidoPage extends WebPage {
 		busquedaDeJugadoresButton.onClick = [|nuevaBusquedaDeJugadores(new Jugador("Roman", new Estandar, 30))]
 		parent.addChild(busquedaDeJugadoresButton)
 
-		parent.addChild(
-			new XButton("generadorDeEquipos") => [
-				onClick = [|]
-			])
+		val generadorDeEquiposButton = new XButton("generadorDeEquipos")
+		generadorDeEquiposButton.onClick = [|nuevoGeneradorDeEquipos()]
+		parent.addChild(generadorDeEquiposButton)
 	}
 
 	def nuevaBusquedaDeJugadores(Jugador jugador) {
 		responsePage = new BusquedaDeJugadoresPage(partido,this.seguidor)
 	}
-
+	
+	def nuevoGeneradorDeEquipos(){
+		responsePage = new GeneradorDeEquiposPage(partido,this.seguidor)
+	}
 }
