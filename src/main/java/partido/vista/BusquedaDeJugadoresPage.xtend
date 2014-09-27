@@ -20,8 +20,8 @@ class BusquedaDeJugadoresPage extends WebPage {
 	@Property SeguidorDePartido seguidor
 	//@Property Admin admin      creo que la estaba flasheando y no lo necesito
 
-	new(Partido partido, SeguidorDePartido seguidor) {
-		this.seguidor = seguidor
+	new(Partido partido, SeguidorDePartido seguidorComoParametro) {
+		this.seguidor = seguidorComoParametro
 		//this.admin = unAdmin
 		
 		val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm", seguidor.asCompoundModel)
