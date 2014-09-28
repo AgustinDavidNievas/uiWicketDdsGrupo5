@@ -29,7 +29,7 @@ class SeguidorDePartido implements Serializable {
 	@Property Jugador jugadorSeleccionado
 	@Property Admin admin
 	
-	@Property Boolean handicap = false
+	@Property Boolean handicapBool = false
 	@Property Boolean ultimasCalificaciones = false
 	@Property Boolean ultimasNCalificaciones = false
 	@Property int numero
@@ -38,6 +38,7 @@ class SeguidorDePartido implements Serializable {
 	//Para que funcione la busqueda de jugadores//
 	@Property String nombre
 	@Property String apodo
+	@Property Integer handicap
 
 	//******************************************//
 	new(Admin unAdmin) {

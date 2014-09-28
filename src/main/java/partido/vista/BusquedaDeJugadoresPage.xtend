@@ -10,6 +10,7 @@ import org.uqbar.wicket.xtend.XListView
 import organizador.partidos.jugador.Jugador
 import organizador.partidos.partido.Partido
 import partido.seguidorDePartido.SeguidorDePartido
+import org.apache.wicket.model.CompoundPropertyModel
 
 class BusquedaDeJugadoresPage extends WebPage {
 
@@ -19,8 +20,8 @@ class BusquedaDeJugadoresPage extends WebPage {
 
 	new(Partido partido, SeguidorDePartido seguidorComoParametro) {
 		this.seguidor = seguidorComoParametro
-		
-		val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm", seguidor.asCompoundModel)
+		val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm", new CompoundPropertyModel<SeguidorDePartido>(this.seguidor))
+		//val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm", seguidor.asCompoundModel)
 		this.agregarCamposDeBusqueda(busquedaDeJugadoresForm)
 		this.agregarAcciones(busquedaDeJugadoresForm)
 		this.agregarGrillaDeJugadores(busquedaDeJugadoresForm)
@@ -29,17 +30,17 @@ class BusquedaDeJugadoresPage extends WebPage {
 	}
 
 	def actualizar() {
-		//TODO
-	}
+		this.seguidor.search
+		}
 
 	def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 		val listView = new XListView("jugadores")
 		listView.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
-			item.addChild(new Label("Nombre"))
-			item.addChild(new Label("Apodo"))
-			item.addChild(new Label("Handicap"))
-			item.addChild(new Label("Promedio"))
+			item.addChild(new Label("nombre"))
+			item.addChild(new Label("apodo"))
+			item.addChild(new Label("handicap"))
+			//item.addChild(new Label("promedio")) esto no lo tiene como property el jugador, vamos a tener que agregarla o calcularlo de alguna manera :P
 			item.addChild(
 				new XButton("editarJugador").onClick = [|seguidor.jugadorSeleccionado = item.modelObject
 					this.abrirDatosDeJugadorPage(seguidor.jugadorSeleccionado)]
