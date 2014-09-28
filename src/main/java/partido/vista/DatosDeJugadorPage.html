@@ -32,11 +32,27 @@ table.materias,th.materias,td.materias {
 
 
 	<form wicket:id="datosDeJugadorForm" class="form-vertical">
-		<table style="width: 100%">
-			<tr wicket:id="jugador">
-				<td>Nombre</td>
-				<td><span wicket:id="nombre">nombre del jugador</span></td>
-			</tr>
+		<div>
+			<label class="control-label" wicket:id="nombre">nombre</label>
+		</div>
+		
+		<div>
+			<label class="control-label" wicket:id="apodo">apodo</label>
+		</div>
+		
+		<div>
+			<label class="control-label" wicket:id="handicap">handicap</label>
+		</div>
+		
+		<div class="form-actions">
+	        <button wicket:id="volver" type="submit" class="btn btn-success">Volver</button>
+        </div>
+	
+<!-- 		<table style="width: 100%"> -->
+<!-- 			<tr wicket:id="jugador"> -->
+<!-- 				<td>Nombre</td> -->
+<!-- 				<td><span wicket:id="nombre">nombre del jugador</span></td> -->
+<!-- 			</tr> -->
 
 			<!--   <tr wicket:id = "jugador"> -->
 			<!--   <td>Apodo</td> -->
@@ -68,6 +84,7 @@ table.materias,th.materias,td.materias {
 			<!--   <td><span wicket:id ="cantidadDePartidos">Cantidad De Partidos</span></td> -->
 			<!--   </tr> -->
 
-		</table>
-</body>
+<!-- 		</table> -->
+		</form>
+	</body>
 </html>

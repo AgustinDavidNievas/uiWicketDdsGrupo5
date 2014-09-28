@@ -15,18 +15,18 @@ class DatosDeJugadorPage extends WebPage {
 
 		val datosDeJugadorForm = new Form<Jugador>("datosDeJugadorForm", jugador.asCompoundModel)
 		this.agregarGrillaDatos(datosDeJugadorForm)
-		this.agregarGrillaInfracciones(datosDeJugadorForm)
+		//this.agregarGrillaInfracciones(datosDeJugadorForm)
 		this.agregarAcciones(datosDeJugadorForm)
 		this.addChild(datosDeJugadorForm)
 		this.actualizar
 	}
 
 	def agregarGrillaDatos(Form<Jugador> parent) {
-		val listView = new XListView("jugador") //El tema es que yo quiero mostrar un atributo, no una lista
-		listView.populateItem = [ item |
-			item.model = item.modelObject.asCompoundModel
-			item.addChild(new Label("nombre"))
-		]
+
+		parent.addChild(new Label("nombre"))
+		parent.addChild(new Label("apodo"))
+		parent.addChild(new Label("handicap"))
+		//mirar los test para los demas atributos, creo que ya tenemos mensajes que calculan esas cosas...
 	}
 
 	def agregarAcciones(Form<Jugador> parent) {
