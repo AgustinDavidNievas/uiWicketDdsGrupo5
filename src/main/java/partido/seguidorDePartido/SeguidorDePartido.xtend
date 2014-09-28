@@ -15,6 +15,7 @@ import organizador.partidos.creador.CreadorDeEquipos
 import organizador.partidos.creador.CreadorAlgoritmo2
 import organizador.partidos.criterios.CriterioPromedioNCalificaciones
 import organizador.partidos.criterios.UltimasCalificaciones
+import org.uqbar.wicket.xtend.XListView
 
 class SeguidorDePartido implements Serializable {
 
@@ -22,6 +23,8 @@ class SeguidorDePartido implements Serializable {
 	@Property List<Criterios> criteriosDeOrdenamiento //Para la generacion de equipos
 	@Property List<Criterios> criteriosDeBusqueda //Para la busqueda de jugadores
 	@Property List<Jugador> jugadores
+	@Property List<Jugador> jugadores1
+	@Property List<Jugador> jugadores2
 	@Property Jugador jugadorSeleccionado
 	@Property Admin admin
 	
@@ -65,6 +68,8 @@ class SeguidorDePartido implements Serializable {
 	def void inicializarColeccionDeJugadores() {
 		this.jugadores = newArrayList
 		this.actualizar
+		this.jugadores1 = newArrayList
+		this.jugadores2 = newArrayList
 	}
 
 	def actualizar() {
