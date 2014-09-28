@@ -56,7 +56,9 @@ class SeguidorDePartidoPage extends WebPage {
 	}
 	
 	def nuevosDatosDeJugador(){
-		responsePage = new DatosDeJugadorPage(new Jugador("Rodry",new Estandar, 22, "Ro"))
+		val jugadorHarcodeadoParaProbarLaPage = new Jugador("Rodry",new Estandar, 22, "Ro")
+		unAdmin.definirHandicap(jugadorHarcodeadoParaProbarLaPage, 5)
+		responsePage = new DatosDeJugadorPage(jugadorHarcodeadoParaProbarLaPage)
 		
 	}
 }
