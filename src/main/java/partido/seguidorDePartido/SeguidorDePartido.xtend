@@ -16,6 +16,7 @@ import organizador.partidos.creador.CreadorAlgoritmo2
 import organizador.partidos.criterios.CriterioPromedioNCalificaciones
 import organizador.partidos.criterios.UltimasCalificaciones
 import org.uqbar.wicket.xtend.XListView
+import organizador.partidos.jugador.Estandar
 
 class SeguidorDePartido implements Serializable {
 
@@ -74,7 +75,12 @@ class SeguidorDePartido implements Serializable {
 
 	def actualizar() {
 		this.jugadores = homeDeJugadores.allInstances.toList
-		this.seleccionarMateriaNumeroUno
+		//esto esta momentaneamente para probar las vistas, el home por alguna razon no esta cargando los jugadores en la lusta :(
+		this.jugadores.add(new Jugador("Hugo",new Estandar,40,"koku"))
+		this.jugadores.add(new Jugador("Gaby",new Estandar,30,"Ga"))
+		//**********************************************************************************************************************//
+		this.seleccionarJugadorNumeroUno
+		println(this.jugadores)
 	}
 
 	def HomeDeJugadores getHomeDeJugadores() {
@@ -82,7 +88,7 @@ class SeguidorDePartido implements Serializable {
 
 	}
 
-	def seleccionarMateriaNumeroUno() {
+	def seleccionarJugadorNumeroUno() {
 		if (jugadores.size > 0)
 			jugadorSeleccionado = jugadores.get(0)
 	}
