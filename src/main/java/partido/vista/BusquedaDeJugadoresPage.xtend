@@ -66,11 +66,6 @@ class BusquedaDeJugadoresPage extends WebPage {
 	}
 
 	def agregarCamposDeBusqueda(Form<SeguidorDePartido> parent) {
-		/*parent.addChild(
-			new DropDownChoice<Criterios>("criteriosDeBusqueda") => [
-				choices = loadableModel([|seguidor.criteriosDeBusqueda])
-			])
-		parent.addChild(new TextField<String>("comienzaCon"))*///hacer if depende del criterio hacer distinto textField...
 		parent.addChild(new TextField<String>("nombre"))
 		parent.addChild(new TextField<String>("apodo"))
 	}
