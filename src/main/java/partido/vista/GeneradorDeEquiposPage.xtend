@@ -1,23 +1,22 @@
 package partido.vista
 
 import org.apache.wicket.markup.html.WebPage
-import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
-import org.apache.wicket.markup.html.form.Form
-import org.uqbar.wicket.xtend.XListView
 import org.apache.wicket.markup.html.basic.Label
+import org.apache.wicket.markup.html.form.CheckBox
+import org.apache.wicket.markup.html.form.Form
+import org.eclipse.xtend.lib.Property
+import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
-import partido.seguidorDePartido.SeguidorDePartido
-import org.apache.wicket.markup.html.form.TextField
-import org.apache.wicket.markup.html.form.DropDownChoice
-import organizador.partidos.partido.Partido
-import organizador.partidos.creador.CreadorDeEquipos
+import org.uqbar.wicket.xtend.XListView
 import organizador.partidos.creador.CreadorAlgoritmo1
 import organizador.partidos.creador.CreadorAlgoritmo2
+import organizador.partidos.creador.CreadorDeEquipos
+import organizador.partidos.criterios.CriterioPromedioNCalificaciones
 import organizador.partidos.criterios.Criterios
-import org.apache.wicket.markup.html.form.CheckBox
 import organizador.partidos.criterios.Handicap
 import organizador.partidos.criterios.UltimasCalificaciones
-import organizador.partidos.criterios.CriterioPromedioNCalificaciones
+import organizador.partidos.partido.Partido
+import partido.seguidorDePartido.SeguidorDePartido
 
 class GeneradorDeEquiposPage extends WebPage {
 
@@ -28,6 +27,8 @@ class GeneradorDeEquiposPage extends WebPage {
 	@Property CreadorDeEquipos creador2
 	@Property SeguidorDePartido seguidor
 	@Property Criterios criterio
+	
+
 
 	new(Partido partido, SeguidorDePartido seguidorDeParametro) {
 		this.mainPage = mainPage
@@ -38,19 +39,34 @@ class GeneradorDeEquiposPage extends WebPage {
 		val generarEquiposForm = new Form<SeguidorDePartido>("generarEquiposForm", seguidor.asCompoundModel)
 		this.agregarGrillaDeJugadoresEquipo1(generarEquiposForm)
 		this.agregarGrillaDeJugadoresEquipo2(generarEquiposForm)
+		this.agregarGrillaDeJugadores(generarEquiposForm)
 		this.agregarCamposDeEdicion(generarEquiposForm)
 		this.agregarAcciones(generarEquiposForm)
 		this.addChild(generarEquiposForm)
+		
+		
 	}
+
+def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
+		val listView = new XListView("jugadores")
+		listView.populateItem = [ item |
+			item.model = item.modelObject.asCompoundModel
+			item.addChild(new Label("nombre"))
+
+		]
+
+		parent.addChild(listView)
+	}
+
 
 	def agregarGrillaDeJugadoresEquipo1(Form<SeguidorDePartido> parent) {
 		val listView = new XListView("jugadores1")
 		listView.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
-			item.addChild(new Label("Nombre"))
-			item.addChild(new Label("Apodo"))
-			item.addChild(new Label("Handicap"))
-			item.addChild(new Label("Promedio"))
+			item.addChild(new Label("nombre"))
+			item.addChild(new Label("apodo"))
+			item.addChild(new Label("handicap"))
+			item.addChild(new Label("promedio"))
 		]
 
 		parent.addChild(listView)
@@ -60,10 +76,10 @@ class GeneradorDeEquiposPage extends WebPage {
 		val listView = new XListView("jugadores2")
 		listView.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
-			item.addChild(new Label("Nombre"))
-			item.addChild(new Label("Apodo"))
-			item.addChild(new Label("Handicap"))
-			item.addChild(new Label("Promedio"))
+			item.addChild(new Label("nombre"))
+			item.addChild(new Label("apodo"))
+			item.addChild(new Label("handicap"))
+			item.addChild(new Label("promedio"))
 		]
 
 		parent.addChild(listView)
@@ -73,7 +89,7 @@ class GeneradorDeEquiposPage extends WebPage {
 
 		println("antes de los ifs" + seguidor.jugadores)
 		val ordenarBoton = new XButton("ordenarJugadores").onClick = [ |
-			if (seguidor.handicap == true && seguidor.ultimasCalificaciones == false &&
+			if (seguidor.handicapBool == true && seguidor.ultimasCalificaciones == false &&
 				seguidor.ultimasNCalificaciones == false) {
 
 				seguidor.admin.ordenarJugadoresPor(new Handicap)
@@ -81,12 +97,12 @@ class GeneradorDeEquiposPage extends WebPage {
 
 			} else {
 
-				if (seguidor.handicap == false && seguidor.ultimasCalificaciones == true &&
+				if (seguidor.handicapBool == false && seguidor.ultimasCalificaciones == true &&
 					seguidor.ultimasNCalificaciones == false) {
 					seguidor.admin.ordenarJugadoresPor(new UltimasCalificaciones)
 					println("en ultimasCalificaciones if" + seguidor.jugadores)
 				} else {
-					if (seguidor.handicap == false && seguidor.ultimasCalificaciones == false &&
+					if (seguidor.handicapBool == false && seguidor.ultimasCalificaciones == false &&
 						seguidor.ultimasNCalificaciones == true) {
 						seguidor.admin.ordenarJugadoresPor(new CriterioPromedioNCalificaciones(seguidor.numero))
 						println("en ultimasNcalificaciones if" + seguidor.jugadores)
@@ -102,7 +118,7 @@ class GeneradorDeEquiposPage extends WebPage {
 
 	def agregarCamposDeEdicion(Form<SeguidorDePartido> parent) {
 
-		parent.addChild(new CheckBox("handicap"))
+		parent.addChild(new CheckBox("handicapBool"))
 		parent.addChild(new CheckBox("ultimasCalificaciones"))
 		parent.addChild(new CheckBox("ultimasNCalificaciones"))
 		parent.addChild(new Label("numero"))

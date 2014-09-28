@@ -24,6 +24,22 @@ table#t01 th {
 	background-color: black;
 	color: white;
 }
+.tablitaJ {
+float: right;
+margin: 5px;
+padding: 15px;
+width: 300px;
+border: 1px solid black;
+} 
+
+.tablita {
+float: left;
+margin: 5px;
+padding: 15px;
+width: 300px;
+height: 300px;
+border: 1px solid black;
+} 
 </style>
 
 
@@ -67,11 +83,29 @@ table#t01 th {
 		<!-- 			</div>	 -->
 
 
+<div class = "tablitaJ">
+			<label>Jugadores</label>
+	           	<table class="table table-striped table-bordered table-condensed" id="t01">
+           		<thead>
+	           		<tr>
+	               		<th id="main">Nombre</th>
+	               	</tr>
+	            </thead>
+				<tbody>
+	               	<tr wicket:id="jugadores">
+	                   	<td>
+	                   	    <span wicket:id="nombre">unJugador</span> 
+	               	    </td> 
+	               	</tr>
+               	</tbody>
+           	</table>
+           </div>
+
 
 		<div class="form-group">
-			<label class="control-label" for="handicap">Handicap</label>
+			<label class="control-label" for="handicapBool">Handicap</label>
 			<div class="controls">
-				<input wicket:id="handicap" type="checkbox">
+				<input wicket:id="handicapBool" type="checkbox">
 			</div>
 
 			<label class="control-label" for="ultimasCalificaciones">Ultimas
@@ -85,16 +119,21 @@ table#t01 th {
 			<div class="controls">
 				<input wicket:id="ultimasNCalificaciones" type="checkbox">
 
-				<div class="form-group">
-					<label class="control-label" for="numero"></label>
-					<div class="controls">
-						<input wicket:id="numero" type="number" placeholder="0"
-							class="form-control">
-					</div>
-				</div>
+				 </div>
+				 <fieldset>	
+	        	<div class="form-group">
+		        	<label class="control-label" for="numero"></label>
+		        	<div class="controls">
+		        		<input wicket:id="numero" type="number" placeholder="" class="form-control" />
+		        	</div>
+                    	
+                		</div>
+               </fieldset> 		
+                	
 
 			</div>
-		</div>
+			
+		
 
 
 		<div class="from-actions">
@@ -102,7 +141,9 @@ table#t01 th {
 				Jugadores</button>
 		</div>
 
-		<div>
+<form>
+<br>
+		<div class = "tablita">
 			<label>Equipo 1</label>
 			<table class="resultados" id="t01">
 				<thead>
@@ -128,8 +169,8 @@ table#t01 th {
 
 			</table>
 		</div>
-
-		<div>
+</br>
+		<div class = "tablita">
 			<label>Equipo 2</label>
 			<table class="resultados" id="t01">
 				<thead>
@@ -155,7 +196,7 @@ table#t01 th {
 
 			</table>
 		</div>
-
+		</form>
 	</form>
 
 

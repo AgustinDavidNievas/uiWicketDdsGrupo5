@@ -33,7 +33,6 @@ class SeguidorDePartido implements Serializable {
 	@Property Boolean ultimasCalificaciones = false
 	@Property Boolean ultimasNCalificaciones = false
 	@Property int numero
-	
 
 	//Para que funcione la busqueda de jugadores//
 	@Property String nombre
@@ -47,6 +46,7 @@ class SeguidorDePartido implements Serializable {
 		this.inicializarColleccionDeCriterios
 		this.inicializarColleccionDeCriteriosDeBusqueda
 		this.admin = unAdmin
+
 	}
 
 	def inicializarColleccionDeCriteriosDeBusqueda() {
@@ -63,10 +63,6 @@ class SeguidorDePartido implements Serializable {
 	//ver los test del dominio para acordarse como funcionan
 	}
 
-
-
-	
-
 	def void inicializarColeccionDeJugadores() {
 		this.jugadores = newArrayList
 		this.actualizar
@@ -76,9 +72,11 @@ class SeguidorDePartido implements Serializable {
 
 	def actualizar() {
 		this.jugadores = homeDeJugadores.allInstances.toList
+
 		//esto esta momentaneamente para probar las vistas, el home por alguna razon no esta cargando los jugadores en la lusta :(
-		this.jugadores.add(new Jugador("Hugo",new Estandar,40,"koku"))
-		this.jugadores.add(new Jugador("Gaby",new Estandar,30,"Ga"))
+		this.jugadores.add(new Jugador("Hugo", new Estandar, 40, "koku"))
+		this.jugadores.add(new Jugador("Gaby", new Estandar, 30, "Ga"))
+
 		//**********************************************************************************************************************//
 		this.seleccionarJugadorNumeroUno
 		println(this.jugadores)
