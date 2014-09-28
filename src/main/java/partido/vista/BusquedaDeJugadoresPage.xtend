@@ -2,27 +2,23 @@ package partido.vista
 
 import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.basic.Label
-import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.html.form.TextField
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
-import organizador.Administrador.Admin
 import organizador.partidos.jugador.Jugador
 import organizador.partidos.partido.Partido
 import partido.seguidorDePartido.SeguidorDePartido
-import organizador.partidos.criterios.Criterios
 
 class BusquedaDeJugadoresPage extends WebPage {
 
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	@Property SeguidorDePartido seguidor
-	//@Property Admin admin      creo que la estaba flasheando y no lo necesito
+	
 
 	new(Partido partido, SeguidorDePartido seguidorComoParametro) {
 		this.seguidor = seguidorComoParametro
-		//this.admin = unAdmin
 		
 		val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm", seguidor.asCompoundModel)
 		this.agregarCamposDeBusqueda(busquedaDeJugadoresForm)
@@ -57,7 +53,7 @@ class BusquedaDeJugadoresPage extends WebPage {
 		responsePage = new DatosDeJugadorPage(jugador)
 	}
 
-	def agregarAcciones(Form<SeguidorDePartido> form) {
+	def agregarAcciones(Form<SeguidorDePartido> parent) {
 		val buscarButton = new XButton("buscar")
 		buscarButton.onClick = [| seguidor.search ]
 		parent.addChild(buscarButton)

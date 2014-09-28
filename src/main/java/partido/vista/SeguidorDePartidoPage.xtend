@@ -58,6 +58,10 @@ class SeguidorDePartidoPage extends WebPage {
 	def nuevosDatosDeJugador(){
 		val jugadorHarcodeadoParaProbarLaPage = new Jugador("Rodry",new Estandar, 22, "Ro")
 		unAdmin.definirHandicap(jugadorHarcodeadoParaProbarLaPage, 5)
+		val listaDeAmigos = newArrayList
+		listaDeAmigos.add(new Jugador("Mauro", new Estandar, 26))
+		listaDeAmigos.add(new Jugador("Diego", new Estandar, 26))
+		jugadorHarcodeadoParaProbarLaPage.amigos = listaDeAmigos
 		responsePage = new DatosDeJugadorPage(jugadorHarcodeadoParaProbarLaPage)
 		
 	}

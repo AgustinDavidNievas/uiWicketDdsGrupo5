@@ -14,14 +14,25 @@ class DatosDeJugadorPage extends WebPage {
 	new(Jugador jugador) {
 
 		val datosDeJugadorForm = new Form<Jugador>("datosDeJugadorForm", jugador.asCompoundModel)
-		this.agregarGrillaDatos(datosDeJugadorForm)
+		this.agregarDatos(datosDeJugadorForm)
+		this.agregarGrillaAmigos(datosDeJugadorForm)
 		//this.agregarGrillaInfracciones(datosDeJugadorForm)
 		this.agregarAcciones(datosDeJugadorForm)
 		this.addChild(datosDeJugadorForm)
 		this.actualizar
 	}
+	
+	def agregarGrillaAmigos(Form<Jugador> parent) {
+		val listView = new XListView("amigos")
+		listView.populateItem = [ item |
+			item.model = item.modelObject.asCompoundModel
+			item.addChild(new Label("nombre"))
+			]
 
-	def agregarGrillaDatos(Form<Jugador> parent) {
+		parent.addChild(listView)
+	}
+
+	def agregarDatos(Form<Jugador> parent) {
 
 		parent.addChild(new Label("nombre"))
 		parent.addChild(new Label("apodo"))
