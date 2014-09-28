@@ -75,16 +75,16 @@ class SeguidorDePartido implements Serializable {
 
 		//esto esta momentaneamente para probar las vistas, el home por alguna razon no esta cargando los jugadores en la lista :(
 		val hugo = new Jugador("Hugo", new Estandar, 40, "koku")
-		this.admin.definirHandicap(hugo,8)
+		//this.admin.definirHandicap(hugo,8)
 		this.jugadores.add(hugo)
 		val gaby = new Jugador("Gaby", new Estandar, 30, "Ga")
-		this.admin.definirHandicap(gaby,6)
+		//this.admin.definirHandicap(gaby,6)
 		this.jugadores.add(gaby)
 		val rodry = new Jugador("Rodry", new Estandar, 20, "Ro")
-		this.admin.definirHandicap(rodry,7)
+		//this.admin.definirHandicap(rodry,7)
 		this.jugadores.add(rodry)
 		val ivan = new Jugador("Ivan", new Estandar, 22, "Ivu")
-		this.admin.definirHandicap(ivan,2)
+		//this.admin.definirHandicap(ivan,2)
 		this.jugadores.add(ivan)
 		//**********************************************************************************************************************//
 		this.seleccionarJugadorNumeroUno
