@@ -31,6 +31,11 @@ class SeguidorDePartido implements Serializable {
 	@Property Admin admin
 	@Property Partido partido
 	
+	//para que funcionen la divicion de equipos
+	@Property Boolean algoritmo1Bool = false
+	@Property Boolean algoritmo2Bool = false
+	
+	//para que funcionen los ordenamienos	
 	@Property Boolean handicapBool = false
 	@Property Boolean ultimasCalificaciones = false
 	@Property Boolean ultimasNCalificaciones = false

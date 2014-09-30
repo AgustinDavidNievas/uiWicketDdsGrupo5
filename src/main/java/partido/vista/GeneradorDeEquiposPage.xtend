@@ -41,7 +41,8 @@ class GeneradorDeEquiposPage extends WebPage {
 		this.agregarGrillaDeJugadoresEquipo2(generarEquiposForm)
 		this.agregarGrillaDeJugadores(generarEquiposForm)
 		this.agregarCamposDeEdicion(generarEquiposForm)
-		this.agregarAcciones(generarEquiposForm)
+		this.agregarAccionesOrdenamiento(generarEquiposForm)
+		this.agregarAccionesDivicionEquipos(generarEquiposForm)
 		this.addChild(generarEquiposForm)
 		
 		
@@ -66,7 +67,7 @@ def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 			item.addChild(new Label("nombre"))
 			item.addChild(new Label("apodo"))
 			item.addChild(new Label("handicap"))
-			item.addChild(new Label("promedio"))
+		
 		]
 
 		parent.addChild(listView)
@@ -79,13 +80,33 @@ def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 			item.addChild(new Label("nombre"))
 			item.addChild(new Label("apodo"))
 			item.addChild(new Label("handicap"))
-			item.addChild(new Label("promedio"))
+	
 		]
 
 		parent.addChild(listView)
 	}
 
-	def agregarAcciones(Form<SeguidorDePartido> parent) {
+
+	def agregarAccionesDivicionEquipos(Form<SeguidorDePartido> parent){
+		
+		val dividirBoton = new XButton("dividirEquipos").onClick = [|
+			if(seguidor.algoritmo1Bool == true && seguidor.algoritmo2Bool == false){
+				seguidor.admin.solicitarCreacionDeEquiposTentativos(new CreadorAlgoritmo1)
+				seguidor.jugadores1 = seguidor.admin.equipoTentativo1
+				seguidor.jugadores2 = seguidor.admin.equipoTentativo2
+			}
+			else{
+				if (seguidor.algoritmo1Bool == false && seguidor.algoritmo2Bool == true){
+					seguidor.admin.solicitarCreacionDeEquiposTentativos(new CreadorAlgoritmo2)
+					seguidor.jugadores1 = seguidor.admin.equipoTentativo1
+					seguidor.jugadores2 = seguidor.admin.equipoTentativo2
+				}
+			}
+		]
+		parent.addChild(dividirBoton)
+	}
+
+	def agregarAccionesOrdenamiento(Form<SeguidorDePartido> parent) {
 
 		println("antes de los ifs" + seguidor.jugadores)
 		val ordenarBoton = new XButton("ordenarJugadores").onClick = [ |
@@ -94,7 +115,7 @@ def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 
 				seguidor.admin.ordenarJugadoresPor(new Handicap)
 				seguidor.jugadores = seguidor.admin.inscriptosOrdenados
-				println("en handicap if" + seguidor.jugadores)
+		
 
 			} else {
 
@@ -102,13 +123,13 @@ def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 					seguidor.ultimasNCalificaciones == false) {
 					seguidor.admin.ordenarJugadoresPor(new UltimasCalificaciones)
 					seguidor.jugadores = seguidor.admin.inscriptosOrdenados
-					println("en ultimasCalificaciones if" + seguidor.jugadores)
+					
 				} else {
 					if (seguidor.handicapBool == false && seguidor.ultimasCalificaciones == false &&
 						seguidor.ultimasNCalificaciones == true) {
 						seguidor.admin.ordenarJugadoresPor(new CriterioPromedioNCalificaciones(seguidor.numero))
 						seguidor.jugadores = seguidor.admin.inscriptosOrdenados
-						println("en ultimasNcalificaciones if" + seguidor.jugadores)
+						
 					}
 
 				}
@@ -125,6 +146,8 @@ def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 		parent.addChild(new CheckBox("ultimasCalificaciones"))
 		parent.addChild(new CheckBox("ultimasNCalificaciones"))
 		parent.addChild(new Label("numero"))
+			parent.addChild(new CheckBox("algoritmo1Bool"))
+				parent.addChild(new CheckBox("algoritmo2Bool"))
 
 	}
 
