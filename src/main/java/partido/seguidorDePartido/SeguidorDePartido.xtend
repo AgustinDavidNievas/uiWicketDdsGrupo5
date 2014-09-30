@@ -130,7 +130,7 @@ class SeguidorDePartido implements Serializable {
 		//**********************************************************************************************************************//
 		this.seleccionarJugadorNumeroUno
 		this.partido.inscriptos = jugadores
-		println(this.jugadores)
+	
 	}
 
 	def HomeDeJugadores getHomeDeJugadores() {

@@ -108,7 +108,7 @@ def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 
 	def agregarAccionesOrdenamiento(Form<SeguidorDePartido> parent) {
 
-		println("antes de los ifs" + seguidor.jugadores)
+		
 		val ordenarBoton = new XButton("ordenarJugadores").onClick = [ |
 			if (seguidor.handicapBool == true && seguidor.ultimasCalificaciones == false &&
 				seguidor.ultimasNCalificaciones == false) {
