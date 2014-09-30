@@ -17,6 +17,7 @@ import organizador.partidos.criterios.CriterioPromedioNCalificaciones
 import organizador.partidos.criterios.UltimasCalificaciones
 import org.uqbar.wicket.xtend.XListView
 import organizador.partidos.jugador.Estandar
+import organizador.partidos.partido.Partido
 
 class SeguidorDePartido implements Serializable {
 
@@ -28,6 +29,7 @@ class SeguidorDePartido implements Serializable {
 	@Property List<Jugador> jugadores2
 	@Property Jugador jugadorSeleccionado
 	@Property Admin admin
+	@Property Partido partido
 	
 	@Property Boolean handicapBool = false
 	@Property Boolean ultimasCalificaciones = false
@@ -40,9 +42,10 @@ class SeguidorDePartido implements Serializable {
 	@Property Integer handicap
 
 	//******************************************//
-	new(Admin unAdmin) {
+	new(Admin unAdmin,Partido unPartido) {
 		super()
 		this.admin = unAdmin
+		this.partido = unPartido
 		this.inicializarColeccionDeJugadores
 		this.inicializarColleccionDeCriterios
 		this.inicializarColleccionDeCriteriosDeBusqueda
@@ -89,6 +92,7 @@ class SeguidorDePartido implements Serializable {
 		this.jugadores.add(ivan)
 		//**********************************************************************************************************************//
 		this.seleccionarJugadorNumeroUno
+		this.partido.inscriptos = jugadores
 		println(this.jugadores)
 	}
 

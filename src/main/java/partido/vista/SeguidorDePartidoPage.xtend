@@ -20,7 +20,7 @@ class SeguidorDePartidoPage extends WebPage {
 	new() {
 		this.unAdmin = new Admin("admin@mail.com")
 		this.partido = new Partido("20/58/14", "Campus", "05:00pm", unAdmin)
-		this.seguidor = new SeguidorDePartido(unAdmin)
+		this.seguidor = new SeguidorDePartido(unAdmin,partido)
 		val seguidorDePartidoForm = new Form<SeguidorDePartido>("seguidorDePartidoForm", this.seguidor.asCompoundModel)
 		this.agregarAcciones(seguidorDePartidoForm)
 		this.addChild(seguidorDePartidoForm)
