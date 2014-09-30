@@ -32,19 +32,43 @@ table.amigos,th.amigos,td.amigos {
 
 
 	<form wicket:id="datosDeJugadorForm" class="form-vertical">
-		<div>
-			<label class="control-label" wicket:id="nombre">nombre</label>
-		</div>
-		<br>
-		
-		<div>
-			<label class="control-label" wicket:id="apodo">apodo</label>
-		</div>
-		<br>
-		<div>
-			<label class="control-label" wicket:id="handicap">handicap</label>
-		</div>
-		<br>
+					<table style="width: 100%">
+					<tr>
+						<td>Nombre</td>
+						<td><span wicket:id="nombre"><b>Nombre del jugador</b></span></td>
+					</tr>
+
+		  <tr>
+		  <td>Apodo</td>
+		  <td><span wicket:id ="apodo"><b>Apodo del jugador</b></span></td>
+		  </tr>  
+
+			<tr>
+		  <td>Handicap</td>
+		  <td><span wicket:id ="handicap"><b>Handicap del jugador</b></span></td>
+		  </tr>
+
+<!-- 		  <tr> -->
+<!-- 		  <td>Promedio del ultimo partido</td> -->
+<!-- 		  <td><span wicket:id ="promedioDelUltimoPartido"><b>Promedio del ultimo partido</b></span></td> -->
+<!-- 		  </tr> -->
+
+<!-- 		  <tr > -->
+<!-- 		  <td>Promedio de todos los partidos</td> -->
+<!-- 		  <td><span wicket:id ="promedioDeTodosLosPartidos"><b>Promedio de todos los partidos</b></span></td> -->
+<!-- 		  </tr> -->
+
+		  <tr>
+		  <td>Fecha de Nacimiento</td>
+		  <td><span wicket:id ="fechaDeNacimiento"><b>Fecha de Nacimiento</b></span></td>
+		  </tr>
+
+		  <tr>
+		  <td>Cantidad de Partidos</td>
+		  <td><span wicket:id ="partidosJugados"><b>Cantidad De Partidos</b></span></td>
+		  </tr>
+
+				</table>
 		<div class="form-actions">
 			<button wicket:id="volver" type="submit" class="btn btn-success">Volver</button>
 		</div>
@@ -53,7 +77,7 @@ table.amigos,th.amigos,td.amigos {
 			<table class="amigos">
 				<thead>
 					<tr>
-						<th id="main">Nombre</th>
+						<th id="main">Amigos</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -64,43 +88,7 @@ table.amigos,th.amigos,td.amigos {
 
 			</table>
 		</div>
-		<!-- 		<table style="width: 100%"> -->
-		<!-- 			<tr wicket:id="jugador"> -->
-		<!-- 				<td>Nombre</td> -->
-		<!-- 				<td><span wicket:id="nombre">nombre del jugador</span></td> -->
-		<!-- 			</tr> -->
 
-		<!--   <tr wicket:id = "jugador"> -->
-		<!--   <td>Apodo</td> -->
-		<!--   <td><span wicket:id ="apodo">apodo del jugador</span></td> -->
-		<!--   </tr>   -->
-
-		<!-- 	<tr wicket:id = "jugador"> -->
-		<!--   <td>Handicap</td> -->
-		<!--   <td><span wicket:id ="handicap">handicap del jugador</span></td> -->
-		<!--   </tr> -->
-
-		<!--   <tr wicket:id = "jugador"> -->
-		<!--   <td>Promedio del ultimo partido</td> -->
-		<!--   <td><span wicket:id ="promedioDelUltimoPartido">promedio del ultimo partido</span></td> -->
-		<!--   </tr> -->
-
-		<!--   <tr wicket:id = "jugador"> -->
-		<!--   <td>Promedio de todos los partidos</td> -->
-		<!--   <td><span wicket:id ="promedioDeTodosLosPartidos">promedio de todos los partidos</span></td> -->
-		<!--   </tr> -->
-
-		<!--   <tr wicket:id = "jugador"> -->
-		<!--   <td>Fecha de Nacimiento</td> -->
-		<!--   <td><span wicket:id ="fechaDeNacimiento">Fecha de Nacimiento</span></td> -->
-		<!--   </tr> -->
-
-		<!--   <tr wicket:id = "jugador"> -->
-		<!--   <td>Cantidad de Partidos</td> -->
-		<!--   <td><span wicket:id ="cantidadDePartidos">Cantidad De Partidos</span></td> -->
-		<!--   </tr> -->
-
-		<!-- 		</table> -->
 	</form>
 </body>
 </html>

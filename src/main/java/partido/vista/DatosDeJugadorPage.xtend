@@ -7,14 +7,16 @@ import organizador.partidos.jugador.Jugador
 import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import org.apache.wicket.markup.html.basic.Label
+import organizador.partidos.criterios.UltimasCalificaciones
+import organizador.partidos.criterios.CriterioPromedioNCalificaciones
 
 class DatosDeJugadorPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
-
-	new(Jugador jugador) {
-
+	
+	
+	new(Jugador jugador) {		
 		val datosDeJugadorForm = new Form<Jugador>("datosDeJugadorForm", jugador.asCompoundModel)
-		this.agregarDatos(datosDeJugadorForm)
+		this.agregarDatos(datosDeJugadorForm, jugador)
 		this.agregarGrillaAmigos(datosDeJugadorForm)
 		//this.agregarGrillaInfracciones(datosDeJugadorForm)
 		this.agregarAcciones(datosDeJugadorForm)
@@ -32,11 +34,18 @@ class DatosDeJugadorPage extends WebPage {
 		parent.addChild(listView)
 	}
 
-	def agregarDatos(Form<Jugador> parent) {
-
+	def agregarDatos(Form<Jugador> parent, Jugador jugador) {
+		val calificacionesUltimoPartido = new UltimasCalificaciones
+		val promedioTodosPartidos = new CriterioPromedioNCalificaciones(jugador.partidosJugados)
+//		val promedioDelUltimoPartido = calificacionesUltimoPartido.aplicarCriterio(jugador)
+//		val promedioDeTodosLosPartidos= promedioTodosPartidos.aplicarCriterio(jugador)
 		parent.addChild(new Label("nombre"))
 		parent.addChild(new Label("apodo"))
 		parent.addChild(new Label("handicap"))
+		parent.addChild(new Label("fechaDeNacimiento"))
+//		parent.addChild(new Label("promedioDelUltimoPartido")) Feedback panel?
+//		parent.addChild(new Label("promedioDeTodosLosPartidos"))
+		parent.addChild(new Label("partidosJugados"))
 		//mirar los test para los demas atributos, creo que ya tenemos mensajes que calculan esas cosas...
 	}
 
