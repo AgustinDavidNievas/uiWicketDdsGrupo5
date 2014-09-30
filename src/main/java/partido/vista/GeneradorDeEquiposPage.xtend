@@ -93,6 +93,7 @@ def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 				seguidor.ultimasNCalificaciones == false) {
 
 				seguidor.admin.ordenarJugadoresPor(new Handicap)
+				seguidor.jugadores = seguidor.admin.inscriptosOrdenados
 				println("en handicap if" + seguidor.jugadores)
 
 			} else {
@@ -100,11 +101,13 @@ def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 				if (seguidor.handicapBool == false && seguidor.ultimasCalificaciones == true &&
 					seguidor.ultimasNCalificaciones == false) {
 					seguidor.admin.ordenarJugadoresPor(new UltimasCalificaciones)
+					seguidor.jugadores = seguidor.admin.inscriptosOrdenados
 					println("en ultimasCalificaciones if" + seguidor.jugadores)
 				} else {
 					if (seguidor.handicapBool == false && seguidor.ultimasCalificaciones == false &&
 						seguidor.ultimasNCalificaciones == true) {
 						seguidor.admin.ordenarJugadoresPor(new CriterioPromedioNCalificaciones(seguidor.numero))
+						seguidor.jugadores = seguidor.admin.inscriptosOrdenados
 						println("en ultimasNcalificaciones if" + seguidor.jugadores)
 					}
 
