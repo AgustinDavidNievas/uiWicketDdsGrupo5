@@ -63,12 +63,24 @@ class BusquedaDeJugadoresPage extends WebPage {
 			.onClick = [| seguidor.clear ]
 		)
 		
+		val buscarHasta = new XButton("buscarHasta")
+		buscarHasta.onClick = [|seguidor.buscarHandicapHasta(seguidor.handicap)]
+		parent.addChild(buscarHasta)
+		
+		val buscarDesde = new XButton("buscarDesde")//por alguna razon este boton da null cuando se ejecuta...
+		buscarHasta.onClick = [|seguidor.buscarHandicapDesde(seguidor.handicap)]
+		parent.addChild(buscarDesde)
+		
+		parent.addChild(new XButton("clear")
+			.onClick = [|seguidor.volverALaListaDeJugadoresSinFiltrar]
+		)
 	
 	}
 
 	def agregarCamposDeBusqueda(Form<SeguidorDePartido> parent) {
 		parent.addChild(new TextField<String>("nombre"))
 		parent.addChild(new TextField<String>("apodo"))
+		parent.addChild(new TextField<Integer>("handicap"))
 	}
 
 }

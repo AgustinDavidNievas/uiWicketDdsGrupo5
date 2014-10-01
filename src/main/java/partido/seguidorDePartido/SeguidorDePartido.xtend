@@ -27,6 +27,9 @@ class SeguidorDePartido implements Serializable {
 	@Property List<Jugador> jugadores
 	@Property List<Jugador> jugadores1
 	@Property List<Jugador> jugadores2
+	/**********esta lista esta para que funcione el limpiar de handicap en la busquedaDeJugadores**********/
+	@Property List<Jugador> jugadoresSinFiltrar
+	/******************************************************************************************************/
 	@Property Jugador jugadorSeleccionado
 	@Property Admin admin
 	@Property Partido partido
@@ -128,6 +131,7 @@ class SeguidorDePartido implements Serializable {
 		ivan.calificarA(rodry,3,"lalalalalala")
 		ivan.calificarA(gaby,5,"blow")
 		//**********************************************************************************************************************//
+		this.jugadoresSinFiltrar = this.jugadores
 		this.seleccionarJugadorNumeroUno
 		this.partido.inscriptos = jugadores
 	
@@ -148,12 +152,25 @@ class SeguidorDePartido implements Serializable {
 		jugadores = new ArrayList<Jugador>
 
 		jugadores = getHomeDeJugadores().search(getNombre, getApodo)
-
+		
+		jugadoresSinFiltrar = getHomeDeJugadores().search(getNombre, getApodo)
 	}
 
 	def void clear() {
 		nombre = null
 		apodo = null
+	}
+	
+	def buscarHandicapHasta(Integer numero){//preguntarle a Lucas como parametrizar el "<" para no duplicar código
+		this.jugadores = jugadores.filter[unJugador|unJugador.handicap >= numero].toList
+	}
+	
+	def buscarHandicapDesde(Integer numero){
+		this.jugadores = jugadores.filter[unJugador|unJugador.handicap <= numero].toList
+	}
+	
+	def volverALaListaDeJugadoresSinFiltrar(){
+		this.jugadores = this.jugadoresSinFiltrar
 	}
 
 }
