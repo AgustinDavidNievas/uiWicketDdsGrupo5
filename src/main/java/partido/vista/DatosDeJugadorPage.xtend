@@ -21,7 +21,7 @@ class DatosDeJugadorPage extends BusquedaDeJugadoresPage {
 		this.agregarGrillaInfracciones(datosDeJugadorForm)
 		this.agregarAccionesDeVolver(datosDeJugadorForm)
 		this.addChild(datosDeJugadorForm)
-		this.actualizar
+		//this.actualizar
 	}
 	
 		def agregarGrillaAmigos(Form<Jugador> parent) {
