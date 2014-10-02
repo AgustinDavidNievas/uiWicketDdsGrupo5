@@ -4,10 +4,21 @@
 
 
 <style>
-table.amigos,th.amigos,td.amigos {
+table.amigoseinfracciones, th.amigoseinfracciones, td.amigoseinfracciones{
+	border-collapse: collapse; 
+ 	width: 100%;
+ 	 
+ } 
+ table.amigos,th.amigos,td.amigos {
 	border: 3px solid black;
 	border-collapse: collapse;
 	width: 40%;
+	background-color: #A9A9A9;
+}
+table.infracciones,th.infracciones,td.infracciones {
+	border: 3px solid black;
+	border-collapse: collapse;
+	width: 30%;
 	background-color: #A9A9A9;
 }
 </style>
@@ -32,63 +43,90 @@ table.amigos,th.amigos,td.amigos {
 
 
 	<form wicket:id="datosDeJugadorForm" class="form-vertical">
-					<table style="width: 100%">
-					<tr>
-						<td>Nombre</td>
-						<td><span wicket:id="nombre"><b>Nombre del jugador</b></span></td>
-					</tr>
-
-		  <tr>
-		  <td>Apodo</td>
-		  <td><span wicket:id ="apodo"><b>Apodo del jugador</b></span></td>
-		  </tr>  
+		<table style="width: 100%">
+			<tr>
+				<td>Nombre</td>
+				<td><span wicket:id="nombre"><b>Nombre del jugador</b></span></td>
+			</tr>
 
 			<tr>
-		  <td>Handicap</td>
-		  <td><span wicket:id ="handicap"><b>Handicap del jugador</b></span></td>
-		  </tr>
+				<td>Apodo</td>
+				<td><span wicket:id="apodo"><b>Apodo del jugador</b></span></td>
+			</tr>
 
-<!-- 		  <tr> -->
-<!-- 		  <td>Promedio del ultimo partido</td> -->
-<!-- 		  <td><span wicket:id ="promedioDelUltimoPartido"><b>Promedio del ultimo partido</b></span></td> -->
-<!-- 		  </tr> -->
+			<tr>
+				<td>Handicap</td>
+				<td><span wicket:id="handicap"><b>Handicap del
+							jugador</b></span></td>
+			</tr>
 
-<!-- 		  <tr > -->
-<!-- 		  <td>Promedio de todos los partidos</td> -->
-<!-- 		  <td><span wicket:id ="promedioDeTodosLosPartidos"><b>Promedio de todos los partidos</b></span></td> -->
-<!-- 		  </tr> -->
+			<tr>
+				<td>Promedio del ultimo partido</td>
+				<td><span wicket:id="promedioDeUltimoPartido"><b>Promedio
+							del ultimo partido</b></span></td>
+			</tr>
 
-		  <tr>
-		  <td>Fecha de Nacimiento</td>
-		  <td><span wicket:id ="fechaDeNacimiento"><b>Fecha de Nacimiento</b></span></td>
-		  </tr>
+			<tr>
+				<td>Promedio de todos los partidos</td>
+				<td><span wicket:id="promedioDeTodosLosPartidos"><b>Promedio
+							de todos los partidos</b></span></td>
+			</tr>
 
-		  <tr>
-		  <td>Cantidad de Partidos</td>
-		  <td><span wicket:id ="partidosJugados"><b>Cantidad De Partidos</b></span></td>
-		  </tr>
+			<tr>
+				<td>Fecha de Nacimiento</td>
+				<td><span wicket:id="fechaDeNacimiento"><b>Fecha de
+							Nacimiento</b></span></td>
+			</tr>
 
-				</table>
+			<tr>
+				<td>Cantidad de Partidos</td>
+				<td><span wicket:id="partidosJugados"><b>Cantidad De
+							Partidos</b></span></td>
+			</tr>
+
+		</table>
 		<div class="form-actions">
 			<button wicket:id="volver" type="submit" class="btn btn-success">Volver</button>
 		</div>
-		
+<table class="amigoseinfracciones">
+<!-- <td> -->
+<!-- 		<div> -->
+<!-- 			<table class="amigos"> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<th id="main">Amigos</th> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr wicket:id="amigos"> -->
+<!-- 						<td><span wicket:id="nombre">unAmigo</span></td> -->
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+
+<!-- 			</table> -->
+<!-- 		</div> -->
+
+</td>
+<td>
 		<div>
-			<table class="amigos">
+			<table class="infracciones">
 				<thead>
 					<tr>
-						<th id="main">Amigos</th>
+						<th id="main">Infracciones</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr wicket:id="amigos">
-						<td><span wicket:id="nombre">unAmigo</span></td>
-					</tr>
+			<tbody>
+				<tr wicket:id="infracciones">
+					<td><span wicket:id="fecha"><b>Fecha de Infracción</b></span>
+					</td>
+					<td><span wicket:id="hora"><b>Hora de Infracción</b></span></td>
+					<td><span wicket:id="motivo"><b>Motivo</b></span></td>
+				</tr>
 				</tbody>
-
-			</table>
+				</table>
 		</div>
-
-	</form>
+		</td>
+		</table>
+		</form>
 </body>
 </html>
