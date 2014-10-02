@@ -17,17 +17,22 @@ class DatosDeJugadorPage extends BusquedaDeJugadoresPage {
 	new(Jugador jugador) {		
 		val datosDeJugadorForm = new Form<Jugador>("datosDeJugadorForm", jugador.asCompoundModel)
 		this.agregarDatos(datosDeJugadorForm, jugador)
-		//this.agregarGrillaAmigos(datosDeJugadorForm)
+		this.agregarGrillaAmigos(datosDeJugadorForm)
 		this.agregarGrillaInfracciones(datosDeJugadorForm)
 		this.agregarAccionesDeVolver(datosDeJugadorForm)
 		this.addChild(datosDeJugadorForm)
 		this.actualizar
 	}
 	
-//	def agregarGrillaAmigos(Form<Jugador> parent) {
-//		super.agregarGrillaDeJugadores(amigos)
-//		parent.addChild(listView)
-//	}
+		def agregarGrillaAmigos(Form<Jugador> parent) {
+		val listView = new XListView("amigos")
+		listView.populateItem = [ item |
+			item.model = item.modelObject.asCompoundModel
+			item.addChild(new Label("nombre"))
+			]
+
+		parent.addChild(listView)
+	}
 
 	def agregarDatos(Form<Jugador> parent, Jugador jugador) {
 		parent.addChild(new Label("nombre"))
