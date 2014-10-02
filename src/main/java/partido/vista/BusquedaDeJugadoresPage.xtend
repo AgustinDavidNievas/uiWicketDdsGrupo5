@@ -11,6 +11,7 @@ import organizador.partidos.jugador.Jugador
 import organizador.partidos.partido.Partido
 import partido.seguidorDePartido.SeguidorDePartido
 import org.apache.wicket.model.CompoundPropertyModel
+import org.apache.wicket.markup.html.list.ListItem
 
 class BusquedaDeJugadoresPage extends WebPage {
 
@@ -19,7 +20,7 @@ class BusquedaDeJugadoresPage extends WebPage {
 	
 	new(){
 		super()
-	}
+	}	
 
 	new(Partido partido, SeguidorDePartido seguidorComoParametro) {
 		this.seguidor = seguidorComoParametro
@@ -44,15 +45,20 @@ class BusquedaDeJugadoresPage extends WebPage {
 			item.addChild(new Label("apodo"))
 			item.addChild(new Label("handicap"))
 			//item.addChild(new Label("promedio")) esto no lo tiene como property el jugador, vamos a tener que agregarla o calcularlo de alguna manera :P
-			item.addChild(
-				new XButton("editarJugador").onClick = [|seguidor.jugadorSeleccionado = item.modelObject
-					this.abrirDatosDeJugadorPage(seguidor.jugadorSeleccionado)]
-			)
+			this.botonAbrirDatosDeJugador(item)
+			
 		]
 
 		parent.addChild(listView)
 	}
 
+	def botonAbrirDatosDeJugador(ListItem<Jugador> item){
+		item.addChild(
+				new XButton("editarJugador").onClick = [|seguidor.jugadorSeleccionado = item.modelObject
+					this.abrirDatosDeJugadorPage(seguidor.jugadorSeleccionado)]
+			)
+	}
+	
 	def abrirDatosDeJugadorPage(Jugador jugador) {
 		responsePage = new DatosDeJugadorPage(jugador)
 	}
