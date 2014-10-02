@@ -12,6 +12,7 @@ import organizador.partidos.partido.Partido
 import partido.seguidorDePartido.SeguidorDePartido
 import org.apache.wicket.model.CompoundPropertyModel
 import org.apache.wicket.markup.html.list.ListItem
+import org.apache.wicket.markup.html.form.CheckBox
 
 class BusquedaDeJugadoresPage extends WebPage {
 
@@ -29,8 +30,27 @@ class BusquedaDeJugadoresPage extends WebPage {
 		this.agregarCamposDeBusqueda(busquedaDeJugadoresForm)
 		this.agregarAcciones(busquedaDeJugadoresForm)
 		this.agregarGrillaDeJugadores(busquedaDeJugadoresForm)
+		this.agregarCheckBox(busquedaDeJugadoresForm)
+		this.agregarAccionesDelCheckBox(busquedaDeJugadoresForm)
 		this.addChild(busquedaDeJugadoresForm)
 		this.actualizar
+	}
+	
+	def agregarAccionesDelCheckBox(Form<SeguidorDePartido> form) {
+		val checkBoxBoton = new XButton("checkBoxBoton").onClick = [ |
+			if (seguidor.infraccionBool == true){
+				seguidor.buscarJugadoresConInfracciones
+			}else{
+				seguidor.volverALaListaDeJugadoresSinFiltrar
+			}
+		]
+		
+		form.addChild(checkBoxBoton)
+	}
+	
+	def agregarCheckBox(Form<SeguidorDePartido> parent) {
+		val infraccion = new CheckBox("infraccionBool")
+		parent.addChild(infraccion)
 	}
 
 	def actualizar() {

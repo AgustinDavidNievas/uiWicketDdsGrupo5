@@ -48,7 +48,7 @@ class SeguidorDePartido implements Serializable {
 	@Property String nombre
 	@Property String apodo
 	@Property Integer handicap
-
+	@Property Boolean infraccionBool = false
 	//******************************************//
 	new(Admin unAdmin,Partido unPartido) {
 		super()
@@ -171,6 +171,10 @@ class SeguidorDePartido implements Serializable {
 	
 	def volverALaListaDeJugadoresSinFiltrar(){
 		this.jugadores = this.jugadoresSinFiltrar
+	}
+	
+	def buscarJugadoresConInfracciones(){
+		this.jugadores = jugadores.filter[unJugador|(unJugador.infracciones.size) > 0].toList
 	}
 
 }
