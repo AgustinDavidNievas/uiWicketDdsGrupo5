@@ -17,6 +17,9 @@ class BusquedaDeJugadoresPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	@Property SeguidorDePartido seguidor
 	
+	new(){
+		super()
+	}
 
 	new(Partido partido, SeguidorDePartido seguidorComoParametro) {
 		this.seguidor = seguidorComoParametro

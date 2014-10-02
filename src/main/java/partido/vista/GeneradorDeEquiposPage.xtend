@@ -18,7 +18,7 @@ import organizador.partidos.criterios.UltimasCalificaciones
 import organizador.partidos.partido.Partido
 import partido.seguidorDePartido.SeguidorDePartido
 
-class GeneradorDeEquiposPage extends WebPage {
+class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 
@@ -30,7 +30,8 @@ class GeneradorDeEquiposPage extends WebPage {
 	
 
 
-	new(Partido partido, SeguidorDePartido seguidorDeParametro) {
+new(Partido partido, SeguidorDePartido seguidorDeParametro) {
+		
 		this.mainPage = mainPage
 		this.creador1 = new CreadorAlgoritmo1
 		this.creador2 = new CreadorAlgoritmo2
@@ -48,7 +49,7 @@ class GeneradorDeEquiposPage extends WebPage {
 		
 	}
 
-def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
+override agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 		val listView = new XListView("jugadores")
 		listView.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
