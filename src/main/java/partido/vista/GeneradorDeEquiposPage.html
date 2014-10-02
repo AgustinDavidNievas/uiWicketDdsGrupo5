@@ -33,7 +33,7 @@ table#t01 th {
 
 .tablita {
 	float: left;
-	padding: 15px;
+	padding: 40px;
 	width: 200px;
 }
 </style>
@@ -99,17 +99,17 @@ table#t01 th {
 					N Calificaciones</label> <input wicket:id="ultimasNCalificaciones"
 					type="checkbox">
 
-			</div>
-			<fieldset>
-				<div class="form-group">
-					<label class="control-label" for="numero"></label>
-					<div class="controls">
-						<input wicket:id="numero" type="number" placeholder=""
-							class="form-control" />
-					</div>
+				<fieldset>
 
-				</div>
-			</fieldset>
+					<label class="control-label" for="numero"></label> <input
+						wicket:id="numero" type="text" placeholder="" class="form-control" />
+
+
+
+				</fieldset>
+
+
+			</div>
 
 
 		</div>
@@ -121,7 +121,7 @@ table#t01 th {
 			<button wicket:id="ordenarJugadores" class="btn">Ordenar
 				Jugadores</button>
 		</div>
-<br></br>
+		<br></br>
 
 
 		<form>
@@ -152,6 +152,8 @@ table#t01 th {
 							<th id="main">Nombre</th>
 							<th id="main">Apodo</th>
 							<th id="main">Handicap</th>
+							<th id="main">Datos</th>
+
 
 						</tr>
 					</thead>
@@ -163,7 +165,12 @@ table#t01 th {
 
 							<td><span wicket:id="handicap">unHandicap</span></td>
 
+							<td>
+								<div class="materia-actions">
+									<button wicket:id="editarJugador" class="btn-link">Abrir</button>
+								</div>
 
+							</td>
 
 						</tr>
 					</tbody>
@@ -179,6 +186,7 @@ table#t01 th {
 							<th id="main">Nombre</th>
 							<th id="main">Apodo</th>
 							<th id="main">Handicap</th>
+							<th id="main">Datos</th>
 
 						</tr>
 					</thead>
@@ -190,7 +198,12 @@ table#t01 th {
 
 							<td><span wicket:id="handicap">unHandicap</span></td>
 
+							<td>
+								<div class="materia-actions">
+									<button wicket:id="editarJugador" class="btn-link">Abrir</button>
+								</div>
 
+							</td>
 
 						</tr>
 					</tbody>

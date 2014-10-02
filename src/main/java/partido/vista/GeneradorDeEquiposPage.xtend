@@ -17,6 +17,7 @@ import organizador.partidos.criterios.Handicap
 import organizador.partidos.criterios.UltimasCalificaciones
 import organizador.partidos.partido.Partido
 import partido.seguidorDePartido.SeguidorDePartido
+import org.apache.wicket.markup.html.form.TextField
 
 class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 
@@ -68,7 +69,7 @@ override agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 			item.addChild(new Label("nombre"))
 			item.addChild(new Label("apodo"))
 			item.addChild(new Label("handicap"))
-		
+			super.botonAbrirDatosDeJugador(item)
 		]
 
 		parent.addChild(listView)
@@ -81,7 +82,7 @@ override agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 			item.addChild(new Label("nombre"))
 			item.addChild(new Label("apodo"))
 			item.addChild(new Label("handicap"))
-	
+			super.botonAbrirDatosDeJugador(item)
 		]
 
 		parent.addChild(listView)
@@ -146,7 +147,7 @@ override agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 		parent.addChild(new CheckBox("handicapBool"))
 		parent.addChild(new CheckBox("ultimasCalificaciones"))
 		parent.addChild(new CheckBox("ultimasNCalificaciones"))
-		parent.addChild(new Label("numero"))
+		parent.addChild(new TextField<Integer>("numero"))
 			parent.addChild(new CheckBox("algoritmo1Bool"))
 				parent.addChild(new CheckBox("algoritmo2Bool"))
 
