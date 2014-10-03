@@ -43,11 +43,11 @@ class SeguidorDePartidoPage extends WebPage {
 		}
 
 	def nuevaBusquedaDeJugadores() {
-		responsePage = new BusquedaDeJugadoresPage(partido,this.seguidor)
+		responsePage = new BusquedaDeJugadoresPage(partido,this.seguidor,this)
 	}
 	
 	def nuevoGeneradorDeEquipos(){
-		responsePage = new GeneradorDeEquiposPage(partido,this.seguidor)
+		responsePage = new GeneradorDeEquiposPage(partido,this.seguidor,this)
 	}
 	
 }

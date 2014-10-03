@@ -25,19 +25,26 @@ class BusquedaDeJugadoresPage extends WebPage {
 		super()
 	}
 
-	new(Partido partido, SeguidorDePartido seguidorComoParametro) {
+	new(Partido partido, SeguidorDePartido seguidorComoParametro, WebPage quienLlama) {
 		this.seguidor = seguidorComoParametro
 		val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm",
 			new CompoundPropertyModel<SeguidorDePartido>(this.seguidor))
-
-		//val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm", seguidor.asCompoundModel)
 		this.agregarCamposDeBusqueda(busquedaDeJugadoresForm)
 		this.agregarAcciones(busquedaDeJugadoresForm)
 		this.agregarGrillaDeJugadores(busquedaDeJugadoresForm)
 		this.agregarCheckBox(busquedaDeJugadoresForm)
 		this.agregarAccionesDelCheckBox(busquedaDeJugadoresForm)
+		this.agregarAccionesDeVolver(busquedaDeJugadoresForm, quienLlama)
 		this.addChild(busquedaDeJugadoresForm)
 		this.actualizar
+	}
+	
+	def agregarAccionesDeVolver(Form<SeguidorDePartido> parent, WebPage quienLlama) {
+		parent.addChild(new XButton("volver").onClick = [|volverPantallaAnterior(quienLlama)])
+	}
+	
+	def volverPantallaAnterior(WebPage quienLlama) {
+		responsePage = quienLlama
 	}
 
 	def agregarAccionesDelCheckBox(Form<SeguidorDePartido> form) {

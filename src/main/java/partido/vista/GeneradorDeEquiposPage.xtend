@@ -18,6 +18,7 @@ import organizador.partidos.criterios.UltimasCalificaciones
 import organizador.partidos.jugador.Jugador
 import organizador.partidos.partido.Partido
 import partido.seguidorDePartido.SeguidorDePartido
+import org.apache.wicket.markup.html.WebPage
 
 class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 
@@ -31,7 +32,7 @@ class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 	
 
 
-new(Partido partido, SeguidorDePartido seguidorDeParametro) {
+new(Partido partido, SeguidorDePartido seguidorDeParametro, WebPage quienLlama) {
 		
 		this.mainPage = mainPage
 		this.creador1 = new CreadorAlgoritmo1
@@ -45,6 +46,7 @@ new(Partido partido, SeguidorDePartido seguidorDeParametro) {
 		this.agregarCamposDeEdicion(generarEquiposForm)
 		this.agregarAccionesOrdenamiento(generarEquiposForm)
 		this.agregarAccionesDivisionEquipos(generarEquiposForm)
+		super.agregarAccionesDeVolver(generarEquiposForm, quienLlama)
 		this.addChild(generarEquiposForm)
 		
 		

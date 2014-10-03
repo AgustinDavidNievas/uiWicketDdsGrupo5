@@ -18,7 +18,7 @@ class DatosDeJugadorPage extends BusquedaDeJugadoresPage {
 		this.agregarDatos(datosDeJugadorForm, jugador)
 		this.agregarGrillaAmigos(datosDeJugadorForm)
 		this.agregarGrillaInfracciones(datosDeJugadorForm)
-		this.agregarAccionesDeVolver(datosDeJugadorForm, quienLlama)
+		this.agregarAccionesDeVolverAtras(datosDeJugadorForm, quienLlama)
 		this.addChild(datosDeJugadorForm)
 		this.actualizar //De hecho, no se por qué tendria que actualizar yo, 
 
@@ -52,12 +52,8 @@ class DatosDeJugadorPage extends BusquedaDeJugadoresPage {
 
 	}
 
-	def agregarAccionesDeVolver(Form<Jugador> parent, WebPage quienLlama) {
+	def agregarAccionesDeVolverAtras(Form<Jugador> parent, WebPage quienLlama) {
 		parent.addChild(new XButton("volver").onClick = [|volverPantallaAnterior(quienLlama)])
-	}
-
-	def volverPantallaAnterior(WebPage quienLlama) {
-		responsePage = quienLlama
 	}
 
 	def agregarGrillaInfracciones(Form<Jugador> parent) {
