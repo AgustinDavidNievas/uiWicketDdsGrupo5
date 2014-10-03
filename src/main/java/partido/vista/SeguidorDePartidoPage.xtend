@@ -40,10 +40,7 @@ class SeguidorDePartidoPage extends WebPage {
 		generadorDeEquiposButton.onClick = [|nuevoGeneradorDeEquipos()]
 		parent.addChild(generadorDeEquiposButton)
 		
-		val datosDeJugadorButton = new XButton("datosDeJugador")
-		datosDeJugadorButton.onClick = [|nuevosDatosDeJugador()]
-		parent.addChild(datosDeJugadorButton)
-	}
+		}
 
 	def nuevaBusquedaDeJugadores() {
 		responsePage = new BusquedaDeJugadoresPage(partido,this.seguidor)
@@ -53,14 +50,4 @@ class SeguidorDePartidoPage extends WebPage {
 		responsePage = new GeneradorDeEquiposPage(partido,this.seguidor)
 	}
 	
-	def nuevosDatosDeJugador(){
-		val jugadorHarcodeadoParaProbarLaPage = new Jugador("Rodry",new Estandar, 22, "Ro")
-		unAdmin.definirHandicap(jugadorHarcodeadoParaProbarLaPage, 5)
-		val listaDeAmigos = newArrayList
-		listaDeAmigos.add(new Jugador("Mauro", new Estandar, 26))
-		listaDeAmigos.add(new Jugador("Diego", new Estandar, 26))
-		jugadorHarcodeadoParaProbarLaPage.amigos = listaDeAmigos
-		responsePage = new DatosDeJugadorPage(jugadorHarcodeadoParaProbarLaPage)
-		
-	}
 }

@@ -70,7 +70,7 @@ class BusquedaDeJugadoresPage extends WebPage {
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("nombre"))
 			item.addChild(new Label("apodo"))
-			item.addChild(this.label1(item))
+			item.addChild(this.label1(item.modelObject))
 					
 			//item.addChild(new Label("promedio")) esto no lo tiene como property el jugador, vamos a tener que agregarla o calcularlo de alguna manera :P
 			this.botonAbrirDatosDeJugador(item)
@@ -79,11 +79,11 @@ class BusquedaDeJugadoresPage extends WebPage {
 		parent.addChild(listView)
 	}
 
-def label1(ListItem<Jugador> item){
+def label1(Jugador jugador){
 	
-	val label1 = new Label("handicap", new PropertyModel(item.modelObject, "handicap"))
+	val label1 = new Label("handicap", new PropertyModel(jugador, "handicap"))
 	val styleAttr = ("color:blue;")
-	if (item.modelObject.handicap > 8) {
+	if (jugador.handicap > 8) {
 						label1.add(new SimpleAttributeModifier("style", styleAttr))
 						
 			}
@@ -98,7 +98,7 @@ def label1(ListItem<Jugador> item){
 	}
 
 	def abrirDatosDeJugadorPage(Jugador jugador) {
-		responsePage = new DatosDeJugadorPage(jugador)
+		responsePage = new DatosDeJugadorPage(jugador, this)
 	}
 
 	def agregarAcciones(Form<SeguidorDePartido> parent) {

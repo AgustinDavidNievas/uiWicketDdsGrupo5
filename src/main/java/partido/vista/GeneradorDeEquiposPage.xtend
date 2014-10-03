@@ -75,7 +75,7 @@ def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent, String jugadores) {
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("nombre"))
 			item.addChild(new Label("apodo"))
-			item.addChild(super.label1(item))
+			item.addChild(super.label1(item.modelObject))
 			super.botonAbrirDatosDeJugador(item)
 			
 		]

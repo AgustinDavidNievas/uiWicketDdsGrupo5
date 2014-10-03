@@ -8,26 +8,25 @@ import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import organizador.partidos.jugador.Jugador
 import org.apache.wicket.behavior.SimpleAttributeModifier
+import org.apache.wicket.markup.html.WebPage
 
 class DatosDeJugadorPage extends BusquedaDeJugadoresPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 
-
-		
-	new(Jugador jugador) {
+	new(Jugador jugador, WebPage quienLlama) {
 		val datosDeJugadorForm = new Form<Jugador>("datosDeJugadorForm", jugador.asCompoundModel)
 		this.agregarDatos(datosDeJugadorForm, jugador)
 		this.agregarGrillaAmigos(datosDeJugadorForm)
 		this.agregarGrillaInfracciones(datosDeJugadorForm)
-		this.agregarAccionesDeVolver(datosDeJugadorForm)
+		this.agregarAccionesDeVolver(datosDeJugadorForm, quienLlama)
 		this.addChild(datosDeJugadorForm)
-		this.prueba1(datosDeJugadorForm, jugador)
 		this.actualizar //De hecho, no se por qué tendria que actualizar yo, 
-						//creo que esta al pedo. Ademas, si no hago un override, 
-						//tira error porque el home parece ser que aparece como null, 
-						//entonces hay NullPointereException.
+
+	//creo que esta al pedo. Ademas, si no hago un override, 
+	//tira error porque el home parece ser que aparece como null, 
+	//entonces hay NullPointereException.
 	}
-	
+
 	def agregarGrillaAmigos(Form<Jugador> parent) {
 		val listView = new XListView("amigos")
 		listView.populateItem = [ item |
@@ -38,14 +37,14 @@ class DatosDeJugadorPage extends BusquedaDeJugadoresPage {
 		parent.addChild(listView)
 	}
 
-override actualizar() {
-	//bien y vos?
-}
+	override actualizar() {
+		//bien y vos?
+	}
 
 	def agregarDatos(Form<Jugador> parent, Jugador jugador) {
 		parent.addChild(new Label("nombre"))
 		parent.addChild(new Label("apodo"))
-		parent.addChild(new Label("handicap"))
+		parent.addChild(super.label1(jugador))
 		parent.addChild(new Label("fechaDeNacimiento"))
 		parent.addChild(new Label("promedioDeUltimoPartido"))
 		parent.addChild(new Label("promedioDeTodosLosPartidos"))
@@ -53,12 +52,12 @@ override actualizar() {
 
 	}
 
-	def agregarAccionesDeVolver(Form<Jugador> parent) {
-		parent.addChild(new XButton("volver").onClick = [|abrirPantallaPrincipal])
+	def agregarAccionesDeVolver(Form<Jugador> parent, WebPage quienLlama) {
+		parent.addChild(new XButton("volver").onClick = [|volverPantallaAnterior(quienLlama)])
 	}
 
-	def abrirPantallaPrincipal() {
-		responsePage = new SeguidorDePartidoPage()
+	def volverPantallaAnterior(WebPage quienLlama) {
+		responsePage = quienLlama
 	}
 
 	def agregarGrillaInfracciones(Form<Jugador> parent) {
@@ -73,13 +72,5 @@ override actualizar() {
 		parent.addChild(listView)
 
 	}
-
-	def prueba1(Form<Jugador> parent, Jugador jugador) {
-		val label1 = new Label("labelEdad", new PropertyModel(jugador, "edad"))
-		val styleAttr = "color:blue;"
-		if(jugador.edad>20){
-		label1.add(new SimpleAttributeModifier("style", styleAttr))}
-		parent.addChild(label1)
-	}
-	
+ 
 }
