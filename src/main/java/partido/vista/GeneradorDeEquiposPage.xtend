@@ -1,10 +1,10 @@
 package partido.vista
 
-import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.CheckBox
 import org.apache.wicket.markup.html.form.Form
-import org.eclipse.xtend.lib.Property
+import org.apache.wicket.markup.html.form.TextField
+import org.apache.wicket.markup.html.list.ListItem
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
@@ -15,9 +15,9 @@ import organizador.partidos.criterios.CriterioPromedioNCalificaciones
 import organizador.partidos.criterios.Criterios
 import organizador.partidos.criterios.Handicap
 import organizador.partidos.criterios.UltimasCalificaciones
+import organizador.partidos.jugador.Jugador
 import organizador.partidos.partido.Partido
 import partido.seguidorDePartido.SeguidorDePartido
-import org.apache.wicket.markup.html.form.TextField
 
 class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 
@@ -39,57 +39,49 @@ new(Partido partido, SeguidorDePartido seguidorDeParametro) {
 		this.seguidor = seguidorDeParametro
 
 		val generarEquiposForm = new Form<SeguidorDePartido>("generarEquiposForm", seguidor.asCompoundModel)
-		this.agregarGrillaDeJugadoresEquipo1(generarEquiposForm)
-		this.agregarGrillaDeJugadoresEquipo2(generarEquiposForm)
-		this.agregarGrillaDeJugadores(generarEquiposForm)
+		this.agregarGrillaDeJugadoresEquipo(generarEquiposForm,"jugadores1")
+		this.agregarGrillaDeJugadoresEquipo(generarEquiposForm, "jugadores2")
+		this.agregarGrillaDeJugadores(generarEquiposForm, "jugadores")
 		this.agregarCamposDeEdicion(generarEquiposForm)
 		this.agregarAccionesOrdenamiento(generarEquiposForm)
-		this.agregarAccionesDivicionEquipos(generarEquiposForm)
+		this.agregarAccionesDivisionEquipos(generarEquiposForm)
 		this.addChild(generarEquiposForm)
 		
 		
 	}
 
-override agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
-		val listView = new XListView("jugadores")
+def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent, String jugadores) {
+		val listView = new XListView(jugadores)
+		bloqueNombreJugadores(listView)
+		parent.addChild(listView)
+	}
+	
+	def bloqueNombreJugadores(XListView<Object> listView) {
 		listView.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("nombre"))
-
+		
 		]
-
-		parent.addChild(listView)
 	}
 
-
-	def agregarGrillaDeJugadoresEquipo1(Form<SeguidorDePartido> parent) {
-		val listView = new XListView("jugadores1")
-		listView.populateItem = [ item |
-			item.model = item.modelObject.asCompoundModel
-			item.addChild(new Label("nombre"))
-			item.addChild(new Label("apodo"))
-			item.addChild(new Label("handicap"))
-			super.botonAbrirDatosDeJugador(item)
-		]
-
+	def agregarGrillaDeJugadoresEquipo(Form<SeguidorDePartido> parent, String jugadores) {
+		val listView = new XListView(jugadores)
+		bloqueDatosCompletosJugador(listView)
 		parent.addChild(listView)
 	}
-
-	def agregarGrillaDeJugadoresEquipo2(Form<SeguidorDePartido> parent) {
-		val listView = new XListView("jugadores2")
+	
+	def bloqueDatosCompletosJugador(XListView<Jugador> listView) {
 		listView.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("nombre"))
 			item.addChild(new Label("apodo"))
-			item.addChild(new Label("handicap"))
+			item.addChild(super.label1(item))
 			super.botonAbrirDatosDeJugador(item)
+			
 		]
-
-		parent.addChild(listView)
 	}
-
-
-	def agregarAccionesDivicionEquipos(Form<SeguidorDePartido> parent){
+	
+	def agregarAccionesDivisionEquipos(Form<SeguidorDePartido> parent){
 		
 		val dividirBoton = new XButton("dividirEquipos").onClick = [|
 			if(seguidor.algoritmo1Bool == true && seguidor.algoritmo2Bool == false){
@@ -143,12 +135,18 @@ override agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
 	}
 
 	def agregarCamposDeEdicion(Form<SeguidorDePartido> parent) {
-
+		val checkbox = new CheckBox("ultimasNCalificaciones")
+		parent.addChild(checkbox)
 		parent.addChild(new CheckBox("handicapBool"))
-		parent.addChild(new CheckBox("ultimasCalificaciones"))
-		parent.addChild(new CheckBox("ultimasNCalificaciones"))
-		parent.addChild(new TextField<Integer>("numero"))
-			parent.addChild(new CheckBox("algoritmo1Bool"))
+		parent.addChild(new CheckBox("ultimasCalificaciones"))		
+		val texto = new TextField<Integer>("numero")
+		
+		if(this.seguidor.ultimasNCalificaciones == false){
+			texto.setVisibilityAllowed(true)
+		}//esta parte tenemos que entender como hacerla conAjax y feedbackpanel, o lo que tengamos que usar
+//		texto.setEnabled(checkbox.)
+		parent.addChild(texto)
+					parent.addChild(new CheckBox("algoritmo1Bool"))
 				parent.addChild(new CheckBox("algoritmo2Bool"))
 
 	}

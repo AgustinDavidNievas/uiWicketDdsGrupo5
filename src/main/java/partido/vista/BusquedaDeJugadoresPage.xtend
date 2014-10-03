@@ -13,19 +13,23 @@ import partido.seguidorDePartido.SeguidorDePartido
 import org.apache.wicket.model.CompoundPropertyModel
 import org.apache.wicket.markup.html.list.ListItem
 import org.apache.wicket.markup.html.form.CheckBox
+import org.apache.wicket.behavior.SimpleAttributeModifier
+import org.apache.wicket.model.PropertyModel
 
 class BusquedaDeJugadoresPage extends WebPage {
 
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	@Property SeguidorDePartido seguidor
-	
-	new(){
+
+	new() {
 		super()
-	}	
+	}
 
 	new(Partido partido, SeguidorDePartido seguidorComoParametro) {
 		this.seguidor = seguidorComoParametro
-		val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm", new CompoundPropertyModel<SeguidorDePartido>(this.seguidor))
+		val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm",
+			new CompoundPropertyModel<SeguidorDePartido>(this.seguidor))
+
 		//val busquedaDeJugadoresForm = new Form<SeguidorDePartido>("busquedaDeJugadoresForm", seguidor.asCompoundModel)
 		this.agregarCamposDeBusqueda(busquedaDeJugadoresForm)
 		this.agregarAcciones(busquedaDeJugadoresForm)
@@ -35,19 +39,19 @@ class BusquedaDeJugadoresPage extends WebPage {
 		this.addChild(busquedaDeJugadoresForm)
 		this.actualizar
 	}
-	
+
 	def agregarAccionesDelCheckBox(Form<SeguidorDePartido> form) {
 		val checkBoxBoton = new XButton("checkBoxBoton").onClick = [ |
-			if (seguidor.infraccionBool == true){
+			if (seguidor.infraccionBool == true) {
 				seguidor.buscarJugadoresConInfracciones
-			}else{
+			} else {
 				seguidor.volverALaListaDeJugadoresSinFiltrar
 			}
 		]
-		
+
 		form.addChild(checkBoxBoton)
 	}
-	
+
 	def agregarCheckBox(Form<SeguidorDePartido> parent) {
 		val infraccion = new CheckBox("infraccionBool")
 		parent.addChild(infraccion)
@@ -55,55 +59,69 @@ class BusquedaDeJugadoresPage extends WebPage {
 
 	def actualizar() {
 		this.seguidor.search
-		}
+	}
 
 	def agregarGrillaDeJugadores(Form<SeguidorDePartido> parent) {
+
+		
+		
 		val listView = new XListView("jugadores")
 		listView.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("nombre"))
 			item.addChild(new Label("apodo"))
-			item.addChild(new Label("handicap"))
+			item.addChild(this.label1(item))
+					
 			//item.addChild(new Label("promedio")) esto no lo tiene como property el jugador, vamos a tener que agregarla o calcularlo de alguna manera :P
 			this.botonAbrirDatosDeJugador(item)
-			
 		]
 
 		parent.addChild(listView)
 	}
 
-	def botonAbrirDatosDeJugador(ListItem<Jugador> item){
-		item.addChild(
-				new XButton("editarJugador").onClick = [|seguidor.jugadorSeleccionado = item.modelObject
-					this.abrirDatosDeJugadorPage(seguidor.jugadorSeleccionado)]
-			)
-	}
+def label1(ListItem<Jugador> item){
 	
+	val label1 = new Label("handicap", new PropertyModel(item.modelObject, "handicap"))
+	val styleAttr = ("color:blue;")
+	if (item.modelObject.handicap > 8) {
+						label1.add(new SimpleAttributeModifier("style", styleAttr))
+						
+			}
+			return label1
+}
+
+	def botonAbrirDatosDeJugador(ListItem<Jugador> item) {
+		item.addChild(
+			new XButton("editarJugador").onClick = [|seguidor.jugadorSeleccionado = item.modelObject
+				this.abrirDatosDeJugadorPage(seguidor.jugadorSeleccionado)]
+		)
+	}
+
 	def abrirDatosDeJugadorPage(Jugador jugador) {
 		responsePage = new DatosDeJugadorPage(jugador)
 	}
 
 	def agregarAcciones(Form<SeguidorDePartido> parent) {
 		val buscarButton = new XButton("buscar")
-		buscarButton.onClick = [| seguidor.search ]
+		buscarButton.onClick = [|seguidor.search]
 		parent.addChild(buscarButton)
-		
-		parent.addChild(new XButton("limpiar")
-			.onClick = [| seguidor.clear ]
+
+		parent.addChild(
+			new XButton("limpiar").onClick = [|seguidor.clear]
 		)
-		
+
 		val buscarHasta = new XButton("buscarHasta")
 		buscarHasta.onClick = [|seguidor.buscarHandicapHasta(seguidor.handicap)]
 		parent.addChild(buscarHasta)
-		
-		val buscarDesde = new XButton("buscarDesde")//por alguna razon este boton da null cuando se ejecuta...
+
+		val buscarDesde = new XButton("buscarDesde") //por alguna razon este boton da null cuando se ejecuta...
 		buscarHasta.onClick = [|seguidor.buscarHandicapDesde(seguidor.handicap)]
 		parent.addChild(buscarDesde)
-		
-		parent.addChild(new XButton("clear")
-			.onClick = [|seguidor.volverALaListaDeJugadoresSinFiltrar]
+
+		parent.addChild(
+			new XButton("clear").onClick = [|seguidor.volverALaListaDeJugadoresSinFiltrar]
 		)
-	
+
 	}
 
 	def agregarCamposDeBusqueda(Form<SeguidorDePartido> parent) {
