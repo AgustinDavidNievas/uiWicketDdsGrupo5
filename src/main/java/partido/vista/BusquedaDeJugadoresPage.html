@@ -68,14 +68,36 @@
 				<div>
 					<input wicket:id="handicap"type="text" placeholder="handicap aqui"class="form-control">
 				</div>
-			</div>
-			<br>
+				
+				<br>
 			
 			 <div class="form-actions">
                 <button wicket:id="buscarHasta" class="btn btn-primary" type="submit">Buscar Hasta...</button>
                 <button wicket:id="buscarDesde" class="btn btn-primary" type="submit">Buscar Desde...</button>
                 <button wicket:id="clear" class="btn">Limpiar</button>
              </div>
+             
+			</div>
+			
+			<br>
+			
+			<div class="form-group">
+				<label class="control-label" for="desde">Promedio</label>
+				<div>
+					<input wicket:id="promedioDeUltimoPartido"type="text" placeholder="promedio aqui"class="form-control">
+				</div>
+				
+				<br>
+				<div class="form-actions">
+                	<button wicket:id="buscarPromedioHasta" class="btn btn-primary" type="submit">Buscar Promedio Hasta...</button>
+                	<button wicket:id="buscarPromedioDesde" class="btn btn-primary" type="submit">Buscar Promedio Desde...</button>
+                	<button wicket:id="clean" class="btn">Limpiar</button>
+             </div>
+             
+			</div>
+			
+			
+			 
 			<br>
 			
 			<table class="resultados">
@@ -101,9 +123,9 @@
 						<span wicket:id="handicap">unHandicap</span>
 					</td>
 					
-<!-- 					<td> -->
-<!-- 						<span wicket:id="promedio">unPromedio</span> -->
-<!-- 					</td> -->
+					<td>
+						<span wicket:id="promedioDeUltimoPartido">unPromedio</span>
+					</td>
 					
 					<td>
 						<div class="materia-actions">
@@ -115,6 +137,7 @@
 			</tbody>
 
 		</table>
+		<br>
 			<div class="form-actions">
 				<button wicket:id="volver" type="submit" class="btn btn-success">Volver</button>
 			</div>

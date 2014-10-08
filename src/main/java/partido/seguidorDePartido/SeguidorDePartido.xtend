@@ -49,6 +49,7 @@ class SeguidorDePartido implements Serializable {
 	@Property String apodo
 	@Property Integer handicap
 	@Property Boolean infraccionBool = false
+	@Property int promedioDeUltimoPartido
 	//******************************************//
 	new(Admin unAdmin,Partido unPartido) {
 		super()
@@ -167,6 +168,14 @@ class SeguidorDePartido implements Serializable {
 	
 	def buscarHandicapDesde(Integer numero){
 		this.jugadores = jugadores.filter[unJugador|unJugador.handicap <= numero].toList
+	}
+	
+	def buscarPromedioDelUltimoPartidoHasta(int numero){
+		this.jugadores = jugadores.filter[unJugador|unJugador.promedioDeUltimoPartido >= numero].toList
+	}
+	
+	def buscarPromedioDelUltimoPartidoDesde(int numero){
+		this.jugadores = jugadores.filter[unJugador|unJugador.promedioDeUltimoPartido <= numero].toList
 	}
 	
 	def volverALaListaDeJugadoresSinFiltrar(){

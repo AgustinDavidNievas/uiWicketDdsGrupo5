@@ -79,7 +79,7 @@ class BusquedaDeJugadoresPage extends WebPage {
 			item.addChild(new Label("apodo"))
 			item.addChild(this.label1(item.modelObject))
 					
-			//item.addChild(new Label("promedio")) esto no lo tiene como property el jugador, vamos a tener que agregarla o calcularlo de alguna manera :P
+			item.addChild(new Label("promedioDeUltimoPartido")) 
 			this.botonAbrirDatosDeJugador(item)
 		]
 
@@ -128,6 +128,18 @@ def label1(Jugador jugador){
 		parent.addChild(
 			new XButton("clear").onClick = [|seguidor.volverALaListaDeJugadoresSinFiltrar]
 		)
+		
+		val buscarPromedioHasta = new XButton("buscarPromedioHasta")
+		buscarPromedioHasta.onClick = [|seguidor.buscarPromedioDelUltimoPartidoHasta(seguidor.promedioDeUltimoPartido)]
+		parent.addChild(buscarPromedioHasta)
+		
+		parent.addChild(new XButton("buscarPromedioDesde") => [
+			onClick = [|seguidor.buscarPromedioDelUltimoPartidoDesde(seguidor.promedioDeUltimoPartido)]
+		])
+		
+		parent.addChild(
+			new XButton("clean").onClick = [|seguidor.volverALaListaDeJugadoresSinFiltrar]
+		)
 
 	}
 
@@ -135,6 +147,7 @@ def label1(Jugador jugador){
 		parent.addChild(new TextField<String>("nombre"))
 		parent.addChild(new TextField<String>("apodo"))
 		parent.addChild(new TextField<Integer>("handicap"))
+		parent.addChild(new TextField<Integer>("promedioDeUltimoPartido"))
 	}
 
 }
