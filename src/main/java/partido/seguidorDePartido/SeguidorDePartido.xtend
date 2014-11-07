@@ -84,10 +84,11 @@ class SeguidorDePartido implements Serializable {
 	}
 
 	def actualizar() {
+		this.homeDeJugadores.init
 		this.jugadores = homeDeJugadores.allInstances.toList
 
 		//esto esta momentaneamente para probar las vistas, el home por alguna razon no esta cargando los jugadores en la lista :(
-		val hugo = new Jugador("Hugo", new Estandar, 40, "koku")
+		/*val hugo = new Jugador("Hugo", new Estandar, 40, "koku")
 		this.admin.definirHandicap(hugo,8)
 		this.jugadores.add(hugo)
 		val gaby = new Jugador("Gaby", new Estandar, 30, "Ga")
@@ -130,7 +131,7 @@ class SeguidorDePartido implements Serializable {
 		
 		ivan.calificarA(hugo,9,"fuck me!")
 		ivan.calificarA(rodry,3,"lalalalalala")
-		ivan.calificarA(gaby,5,"blow")
+		ivan.calificarA(gaby,5,"blow")*/
 		//**********************************************************************************************************************//
 		this.jugadoresSinFiltrar = this.jugadores
 		this.seleccionarJugadorNumeroUno
