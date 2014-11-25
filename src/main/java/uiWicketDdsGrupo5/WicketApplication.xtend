@@ -5,6 +5,7 @@ import org.uqbar.commons.utils.ApplicationContext
 import organizador.partidos.jugador.Jugador
 import partido.vista.SeguidorDePartidoPage
 import organizador.home.HomeDeJugadores
+import organizador.persistencia.SessionManager
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
@@ -20,6 +21,7 @@ class WicketApplication extends WebApplication {
 	override init() {
 		super.init()
 		ApplicationContext.instance.configureSingleton(Jugador, new HomeDeJugadores)
+		SessionManager::startApplication
 	}
 	
 }
