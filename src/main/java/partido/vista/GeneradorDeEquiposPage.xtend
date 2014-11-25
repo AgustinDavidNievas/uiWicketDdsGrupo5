@@ -21,6 +21,7 @@ import partido.seguidorDePartido.SeguidorDePartido
 import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.panel.FeedbackPanel
 import partido.excepciones.UltimasNCalificacionesEsCero
+import organizador.persistencia.SessionManager
 
 class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 
@@ -87,11 +88,21 @@ class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 				seguidor.admin.solicitarCreacionDeEquiposTentativos(new CreadorAlgoritmo1)
 				seguidor.jugadores1 = seguidor.admin.equipoTentativo1
 				seguidor.jugadores2 = seguidor.admin.equipoTentativo2
+				/************************************************************************/
+//				SessionManager::getSession().saveOrUpdate(this.seguidor.admin.equipoTentativo1)//no estoy seguro si acá va this.seguidor.admin.equipoTentativo1
+//				SessionManager::getSession().saveOrUpdate(this.seguidor.admin.equipoTentativo2)//this.seguidor.jugadores1 con eso me tira error ukunow entity
+//				SessionManager::commit()
+				/************************************************************************/
 			} else {
 				if (seguidor.algoritmo1Bool == false && seguidor.algoritmo2Bool == true) {
 					seguidor.admin.solicitarCreacionDeEquiposTentativos(new CreadorAlgoritmo2)
 					seguidor.jugadores1 = seguidor.admin.equipoTentativo1
 					seguidor.jugadores2 = seguidor.admin.equipoTentativo2
+					/************************************************************************/
+//					SessionManager::getSession().saveOrUpdate(this.seguidor.admin.equipoTentativo1)//no estoy seguro si acá va this.seguidor.admin.equipoTentativo1
+//					SessionManager::getSession().saveOrUpdate(this.seguidor.admin.equipoTentativo2)//this.seguidor.jugadores1 con eso me tira error ukunow entity
+//					SessionManager::commit()
+					/************************************************************************/
 				}
 			}
 		]
