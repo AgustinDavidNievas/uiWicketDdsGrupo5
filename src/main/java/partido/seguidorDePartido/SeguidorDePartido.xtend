@@ -18,6 +18,7 @@ import organizador.partidos.criterios.UltimasCalificaciones
 import org.uqbar.wicket.xtend.XListView
 import organizador.partidos.jugador.Estandar
 import organizador.partidos.partido.Partido
+import organizador.partidos.jugador.Tipo
 
 class SeguidorDePartido implements Serializable {
 
@@ -51,6 +52,9 @@ class SeguidorDePartido implements Serializable {
 	@Property Boolean infraccionBool = false
 	@Property int promedioDeUltimoPartido
 	//******************************************//
+	
+	@Property Tipo tipo = new Estandar //todos los jugadores los creamos como estandar
+	
 	new(Admin unAdmin,Partido unPartido) {
 		super()
 		this.admin = unAdmin

@@ -22,6 +22,7 @@ import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.panel.FeedbackPanel
 import partido.excepciones.UltimasNCalificacionesEsCero
 import organizador.persistencia.SessionManager
+import organizador.partidos.jugador.Estandar
 
 class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 
@@ -89,9 +90,9 @@ class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 				seguidor.jugadores1 = seguidor.admin.equipoTentativo1
 				seguidor.jugadores2 = seguidor.admin.equipoTentativo2
 				/************************************************************************/
-//				SessionManager::getSession().saveOrUpdate(this.seguidor.admin.equipoTentativo1)//no estoy seguro si acá va this.seguidor.admin.equipoTentativo1
-//				SessionManager::getSession().saveOrUpdate(this.seguidor.admin.equipoTentativo2)//this.seguidor.jugadores1 con eso me tira error ukunow entity
-//				SessionManager::commit()
+				SessionManager::getSession().saveOrUpdate(this.seguidor.tipo)//todos los jugadores son estandar
+				SessionManager::getSession().saveOrUpdate(this.seguidor.admin.partido)//aparentemente no se pueden persistir colecciones
+				SessionManager::commit()											 				
 				/************************************************************************/
 			} else {
 				if (seguidor.algoritmo1Bool == false && seguidor.algoritmo2Bool == true) {
@@ -99,9 +100,10 @@ class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 					seguidor.jugadores1 = seguidor.admin.equipoTentativo1
 					seguidor.jugadores2 = seguidor.admin.equipoTentativo2
 					/************************************************************************/
-//					SessionManager::getSession().saveOrUpdate(this.seguidor.admin.equipoTentativo1)//no estoy seguro si acá va this.seguidor.admin.equipoTentativo1
-//					SessionManager::getSession().saveOrUpdate(this.seguidor.admin.equipoTentativo2)//this.seguidor.jugadores1 con eso me tira error ukunow entity
-//					SessionManager::commit()
+					
+					SessionManager::getSession().saveOrUpdate(this.seguidor.tipo)
+					SessionManager::getSession().saveOrUpdate(this.seguidor.admin.partido)
+					SessionManager::commit()
 					/************************************************************************/
 				}
 			}
