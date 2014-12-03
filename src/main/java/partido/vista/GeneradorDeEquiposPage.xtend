@@ -91,7 +91,7 @@ class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 				seguidor.jugadores2 = seguidor.admin.equipoTentativo2
 				/************************************************************************/
 				SessionManager::getSession().saveOrUpdate(this.seguidor.admin.partido)//aparentemente no se pueden persistir colecciones
-				SessionManager::getSession().saveOrUpdate(this.seguidor.tipo)//todos los jugadores son estandar
+				//SessionManager::getSession().saveOrUpdate(this.seguidor.tipo)//todos los jugadores son estandar
 				SessionManager::commit()											 				
 				/************************************************************************/
 			} else {
@@ -101,8 +101,8 @@ class GeneradorDeEquiposPage extends BusquedaDeJugadoresPage {
 					seguidor.jugadores2 = seguidor.admin.equipoTentativo2
 					/************************************************************************/
 					SessionManager::getSession().saveOrUpdate(this.seguidor.admin.partido)
-					SessionManager::getSession().saveOrUpdate(this.seguidor.tipo)
-					SessionManager::commit()
+					//SessionManager::getSession().saveOrUpdate(this.seguidor.tipo) //comentado o no, el error sigue siendo el mismo, en un monento crei
+					SessionManager::commit()										// que estaba grabando los tipos dos veces y por eso se tiraba el error (googleando vi que era una de las psibilidades del error.
 					/************************************************************************/
 				}
 			}
